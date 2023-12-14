@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="rosserial_arduino"       type="serial_node.py"           name="serial_node"              output="screen">
+        <param name="port"  type="string"   value="/dev/ttyACM0"/>
+        <param name="baud"  type="int"      value="57600"/>
+    </node>
+    <node pkg="ros_serial"              type="motor_listener.py"        name="motor_listener"           output="screen"></node>
+    <node pkg="teleop_twist_keyboard"   type="teleop_twist_keyboard.py" name="teleop_twist_keyboard"    output="screen"></node>
+</launch>
