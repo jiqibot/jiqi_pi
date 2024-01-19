@@ -1,0 +1,7 @@
+data:
+  name: alex
+  favFood: 
+    - pizza
+    - burgers
+    - hotdogs
+    - pasta
