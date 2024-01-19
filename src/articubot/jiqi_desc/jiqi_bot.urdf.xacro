@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="jiqi_bot">
+
+    <xacro:include filename="jiqi_core.xacro"/>
+
+    
+</robot>
