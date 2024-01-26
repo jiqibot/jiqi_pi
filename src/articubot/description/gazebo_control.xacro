@@ -18,9 +18,11 @@
             <maxWheelAcceleration>10</maxWheelAcceleration>
 
             <!-- Output -->
-            <odometryFrame>odom</odometryFrame>
-            <publishOdomTF>true</publishOdomTF>
-            <publishWheelTF>true</publishWheelTF>
+            <odometryFrame>odom123</odometryFrame> <!-- CHANGE BACK TO ODOM-->
+            <publishOdomTF>false</publishOdomTF> <!-- CHANGE BACK TO true-->
+            <publishWheelTF>false</publishWheelTF> <!-- CHANGE BACK TO true-->
+            <odometryTopic>odom123</odometryTopic>
+            <publishTF>0</publishTF>
 
         </plugin>
     </gazebo>

@@ -10,7 +10,7 @@ global_costmap:
     subscribe_to_updates: true
     lethal_cost_threshold: 60
   inflater_layer:
-    inflation_radius: 0.5
+    inflation_radius: 0.1
     cost_scaling_factor: 0.5
 
   plugins:
