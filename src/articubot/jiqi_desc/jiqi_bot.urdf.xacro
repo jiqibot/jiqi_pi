@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="jiqi_bot">
 
     <xacro:include filename="jiqi_core.xacro"/>
+    <xacro:include filename="rplidar.xacro"/>
 
     
 </robot>
