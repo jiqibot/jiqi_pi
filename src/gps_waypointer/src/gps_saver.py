@@ -53,18 +53,12 @@ def gpsCallout(gpsMsg: NavSatFix):
     if keyInput == "r":
         # rospy.loginfo(gpsMsg) # logs the message being received from /fix (nmea_serial_driver)
         gpsPoint = { # had to recreate the format of the NatSatFix msg as a python dict object so that the names in the yaml files aligned with the NatSatFix
-            "header": {
-                "seq": len(gpsPoints) + 1,
-                "stamp": {
-                    "secs": gpsMsg.header.stamp.secs,
-                    "nsecs": gpsMsg.header.stamp.nsecs
-                },
-                "frame_id": gpsMsg.header.frame_id,
-            },
-            "status": {
-                "status": gpsMsg.status.status,
-                "service": gpsMsg.status.service
-            },
+            "seq": len(gpsPoints) + 1,
+            "secs": gpsMsg.header.stamp.secs,
+            "nsecs": gpsMsg.header.stamp.nsecs,
+            "frame_id": gpsMsg.header.frame_id,
+            "status": gpsMsg.status.status,
+            "service": gpsMsg.status.service,
             "latitude": gpsMsg.latitude,
             "longitude": gpsMsg.longitude,
             "altitude": gpsMsg.altitude,
