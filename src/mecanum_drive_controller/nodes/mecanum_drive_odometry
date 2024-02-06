@@ -10,8 +10,8 @@ from geometry_msgs.msg import PoseWithCovarianceStamped
 from tf.broadcaster import TransformBroadcaster
 from tf.transformations import quaternion_from_euler, euler_from_quaternion
 from math import sin, cos
-from mecanum_drive.pose import Pose
-from mecanum_drive import odometry
+from src.pose import Pose
+from src import odometry
 import math
 
 ODOM_POSE_COVARIANCE = [1, 0, 0, 0, 0, 0, 
@@ -31,7 +31,7 @@ ODOM_TWIST_COVARIANCE = [1, 0, 0, 0, 0, 0,
 class OdometryNode:
 
     def __init__(self):
-        self.odometry = odometry.Odometry()
+        self.odometry = Odometry()
 
     def main(self):
         self.odomPub = rospy.Publisher('odom', Odometry, queue_size=10)

@@ -5,12 +5,12 @@ import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Int16MultiArray
 
-from mecanum_drive import controller
+from src.controller import Controller
 
 class ControllerNode:
 
     def __init__(self):
-        self.controller = controller.Controller()
+        self.controller = Controller()
         self.linearXVelocity = 0.0
         self.linearYVelocity = 0.0
         self.angularVelocity = 0.0
