@@ -4,13 +4,13 @@
 
     <param name="/use_sim_time" value="false"/> 
 
-    <node name="rplidar_s2" pkg="rplidar_ros" type="rplidarNode" output="screen"> 
-        <param name="serial_port" type="string" value="/dev/ttyUSB0"/>
+    <!-- <node name="rplidar_s2" pkg="rplidar_ros" type="rplidarNode" output="screen"> 
+        <param name="serial_port" type="string" value="/dev/RPLidarUSB"/>
         <param name="serial_baudrate" type="int" value="1000000"/>
         <param name="frame_id" type="string" value="laser"/>
         <param name="inverted" type="bool" value="false"/>
         <param name="angle_compensate" type="bool" value="true"/>
-    </node>
+    </node> -->
 
     <!-- <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/description/robot.urdf.xacro"/> -->
     <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/jiqi_desc/jiqi_bot.urdf.xacro"/>
