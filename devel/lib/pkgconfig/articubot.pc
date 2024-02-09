@@ -1,0 +1,8 @@
+prefix=/home/jiqi/jiqi_pi/devel
+
+Name: articubot
+Description: Description of articubot
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

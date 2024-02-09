@@ -1,0 +1,2 @@
+articubot:gps_waypointer:ros_serial
+-DCATKIN_DEVEL_PREFIX=/home/jiqi/jiqi_pi/devel -DCMAKE_INSTALL_PREFIX=/home/jiqi/jiqi_pi/install -G Unix Makefiles

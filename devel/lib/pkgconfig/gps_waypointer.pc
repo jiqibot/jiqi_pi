@@ -1,0 +1,8 @@
+prefix=/home/jiqi/jiqi_pi/devel
+
+Name: gps_waypointer
+Description: Description of gps_waypointer
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
