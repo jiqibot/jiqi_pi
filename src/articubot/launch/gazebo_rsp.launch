@@ -13,7 +13,7 @@
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen"/>
     <!-- <node name="rviz" pkg="rviz" type="rviz" output="screen" /> -->
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find hector_slam_launch)/rviz_cfg/mapping_demo.rviz"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find articubot)/rviz/hector_config.rviz"/>
 
     <!-- Loads an empty gazebo world with my basiz maze loaded into it-->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">

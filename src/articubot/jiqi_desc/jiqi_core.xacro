@@ -26,7 +26,7 @@
     <link name="base_link"></link>
 
     <joint name="base_joint" type="fixed">
-        <origin xyz="1.0 1.0 0.0" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="chassis_link"/>
     </joint>
@@ -54,7 +54,7 @@
 
     <!-- FRONT RIGHT WHEEL -->
 
-    <joint name="fr_wheel_joint" type="continuous">
+    <!-- <joint name="fr_wheel_joint" type="continuous">
         <parent link="chassis_link"/>
         <child link="fr_wheel_link"/>
         <axis xyz="0.0 0.0 -1.0"/>
@@ -77,11 +77,11 @@
         <xacro:inertial_cylinder mass="0.1" length="0.05" radius="0.09">
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         </xacro:inertial_cylinder>
-    </link>
+    </link> -->
 
     <!-- FRONT LEFT WHEEL -->
 
-    <joint name="fl_wheel_joint" type="continuous">
+    <!-- <joint name="fl_wheel_joint" type="continuous">
         <parent link="chassis_link"/>
         <child link="fl_wheel_link"/>
         <axis xyz="0.0 0.0 -1.0"/>
@@ -104,11 +104,11 @@
         <xacro:inertial_cylinder mass="0.1" length="0.05" radius="0.09">
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         </xacro:inertial_cylinder>
-    </link>
+    </link> -->
 
     <!-- BACK RIGHT WHEEL -->
 
-    <joint name="br_wheel_joint" type="continuous">
+    <!-- <joint name="br_wheel_joint" type="continuous">
         <parent link="chassis_link"/>
         <child link="br_wheel_link"/>
         <axis xyz="0.0 0.0 -1.0"/>
@@ -131,15 +131,15 @@
         <xacro:inertial_cylinder mass="0.1" length="0.05" radius="0.09">
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         </xacro:inertial_cylinder>
-    </link>
+    </link> -->
 
     <!-- BACK LEFT WHEEL -->
-
+<!-- 
     <joint name="bl_wheel_joint" type="continuous">
         <parent link="chassis_link"/>
         <child link="bl_wheel_link"/>
         <axis xyz="0.0 0.0 -1.0"/>
-        <origin xyz="-0.29 -0.2325 0.025" rpy="${pi/2} 0.0 0.0"/>
+        <origin xyz="-0.29 -0.2325 0.025" rpy="<node pkg="rviz" type="rviz" name="rviz" args="-d $(find articubot)/rviz/hector_config.rviz"/> 0.0 0.0"/>
     </joint>
 
     <link name="bl_wheel_link">
@@ -158,12 +158,12 @@
         <xacro:inertial_cylinder mass="0.1" length="0.05" radius="0.09">
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         </xacro:inertial_cylinder>
-    </link>
+    </link> -->
 
     <!-- Lidar Mount -->
 
     <joint name="lidar_mount_joint" type="fixed">
-        <origin xyz="0.0 0.0 0.035" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.3 0.0 0.035" rpy="0.0 0.0 0.0"/>
         <parent link="chassis_link"/>
         <child link="lidar_mount_link"/>
     </joint>
