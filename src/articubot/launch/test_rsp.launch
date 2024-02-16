@@ -6,7 +6,7 @@
     <param name="robot_description" command="$(find xacro)/xacro --inorder $(find articubot)/description/robot.urdf.xacro"/>
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen"/>
-    <node name="rviz" pkg="rviz" type="rviz" output="screen" />
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find articubot)/rviz/hector_config.rviz"/>
 
     <!-- <node name="rplidar_s2" pkg="rplidar_ros" type="rplidarNode" output="screen">
         <param name="serial_port" type="string" value="/dev/ttyUSB0"/>
