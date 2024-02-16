@@ -26,6 +26,7 @@ class ControllerNode:
 
         rospy.Subscriber("cmd_vel", Twist, self.twistCallback)
 
+        # Get parameters from terminal arguments / launch file
         self.ticksPerMeter = float(rospy.get_param('~ticks_per_meter'))
         self.wheelSeparation = float(rospy.get_param('~wheel_separation'))
         self.wheelSeparationLength = float(rospy.get_param('~wheel_separation_length'))
