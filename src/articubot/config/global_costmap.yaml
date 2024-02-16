@@ -1,5 +1,5 @@
 global_costmap:
-  update_frequency: 5.0 # the rate the costmap updates
+  update_frequency: 15.0 # the rate the costmap updates
   static_map: true # if the robot is localising in an existing map set to true
   rolling_window: false # sets whether the robot will always be centered on the map
   width: 50
