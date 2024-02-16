@@ -1,7 +1,7 @@
 from __future__ import division
 from math import pi, sin, cos
-from encoder import Encoder
-from pose import Pose
+from mecanum_drive_controller.encoder import Encoder
+from mecanum_drive_controller.pose import Pose
 
 class Odometry:
     """Keeps track of the current position and velocity of a
