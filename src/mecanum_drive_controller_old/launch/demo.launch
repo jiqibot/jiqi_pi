@@ -1,0 +1,31 @@
+<launch>
+
+  <arg name="ticks_per_meter" default="10000" />
+  <arg name="wheel_separation" default="0.2" />
+  <arg name="wheel_separation_length" default="0.3" />
+
+  <node name="controller" pkg="mecanum_drive_controller" type="mecanum_drive_controller"
+        output="screen">
+    <rosparam param="ticks_per_meter" subst_value="True">$(arg ticks_per_meter)</rosparam>
+    <rosparam param="ticks_per_meter" subst_value="True">$(arg ticks_per_meter)</rosparam>
+    <rosparam param="ticks_per_meter" subst_value="True">$(arg ticks_per_meter)</rosparam>
+    <rosparam param="ticks_per_meter" subst_value="True">$(arg ticks_per_meter)</rosparam>
+    <rosparam param="timeout"></rosparam>
+      wheel_separation: $(arg wheel_separation)
+      wheel_separation_length: $(arg wheel_separation_length)
+      max_motor_speed: 3000
+      timeout: 1.0
+    </rosparam>
+    <remap from="cmd_vel" to="/robot/cmd_vel" />
+  </node>
+  
+  <node name="odom_publisher" pkg="mecanum_drive_controller" type="mecanum_drive_odometry"
+        output="screen">
+    <rosparam subst_value="true">
+      ticks_per_meter: 10000 <!-- $(arg ticks_per_meter) -->
+      wheel_separation: 0.2 <!-- $(arg wheel_separation) -->
+      wheel_separation_length: 0.3 <!-- $(arg wheel_separation_length) -->
+    </rosparam>
+  </node>
+
+</launch>
