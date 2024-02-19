@@ -62,11 +62,11 @@ class MDCNode
             }
         }
 
-        void twistCallback(const geometry_msgs::Twist &twist)
+        void twistCallback(const geometry_msgs::Twist::ConstPtr& twist)
         {
-            linear_x_velocity = twist.linear.x;
-            linear_y_velocity = twist.linear.y;
-            angular_velocity = twist.angular.z;
+            linear_x_velocity = twist->linear.x;
+            linear_y_velocity = twist->linear.y;
+            angular_velocity = twist->angular.z;
             last_twist_time = ros::Time::now();
         }
 

@@ -209,3 +209,7 @@ include_directories(
 
 add_executable(mecanum_drive_controller nodes/mecanum_drive_controller.cpp)
 target_link_libraries(mecanum_drive_controller ${catkin_LIBRARIES})
+
+## Add when odometry node is completed
+# add_executable(mecanum_drive_odometry nodes/mecanum_drive_odometry.cpp)
+# target_link_libraries(mecanum_drive_controller ${catkin_LIBRARIES})
