@@ -18,10 +18,10 @@ class MDCNode
             wheel_pub = nh.advertise<std_msgs::Int16MultiArray>("wheels_desired_rate", 1);
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
 
-            nh.getParam("ticks_per_meter", ticks_per_meter);
-            nh.getParam("wheel_separation", wheel_separation_width);
-            nh.getParam("wheel_separation_length", wheel_separation_length);
-            nh.getParam("max_motor_speed", max_motor_speed);
+            nh.param("ticks_per_meter", ticks_per_meter, 10000);
+            nh.param("wheel_separation", wheel_separation_width, 0.2);
+            nh.param("wheel_separation_length", wheel_separation_length, 0.3);
+            nh.param("max_motor_speed", max_motor_speed, 3000);
             nh.param("rate", rate, 10.0);
             nh.param("timeout", timeout, 0.2);
 

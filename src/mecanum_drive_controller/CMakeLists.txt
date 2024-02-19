@@ -107,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES mecanum_drive_controller
-#  CATKIN_DEPENDS geometry_msgs math nav_msgs rospy std_msgs tf.broadcaster tf.transformations
+#  CATKIN_DEPENDS geometry_msgs nav_msgs rospy std_msgs tf
 #  DEPENDS system_lib
 )
 
@@ -118,7 +118,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+#  include
   ${catkin_INCLUDE_DIRS}
 )
 
