@@ -5,7 +5,7 @@ import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Int16MultiArray
 
-from mecanum_drive_controller import controller
+from mecanum_drive_controller_old.src.mecanum_drive_controller import controller
 
 class ControllerNode:
 
