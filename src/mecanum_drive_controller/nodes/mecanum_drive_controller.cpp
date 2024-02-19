@@ -73,8 +73,8 @@ class MDCNode
         // MEMBER VARIABLES
         MDCController controller;
         double linear_x_velocity, linear_y_velocity, angular_velocity;
-        double ticks_per_meter, wheel_separation_width, wheel_separation_length;
-        int max_motor_speed;
+        double wheel_separation_width, wheel_separation_length;
+        int max_motor_speed, ticks_per_meter;
         double rate, timeout;
         std_msgs::Int16MultiArray wheels_to_send;
 

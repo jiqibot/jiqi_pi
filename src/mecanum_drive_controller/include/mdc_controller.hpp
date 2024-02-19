@@ -9,7 +9,7 @@ class MDCMotorCommand
 {
     public:
         // Member variables representing motor speeds
-        int FL, FR, RL, RR;
+        double FL, FR, RL, RR;
         // Constructor to initialise member variables
         MDCMotorCommand() : FL(0), FR(0), RL(0), RR(0) {}
 };
@@ -22,7 +22,7 @@ class MDCController
         MDCController() : max_motor_speed(0), ticks_per_meter(0), wheel_separation_width(0), wheel_separation_length(0) {}
 
         // Method to calculate motor speeds - returns values within a MotorCommand object 
-        MDCMotorCommand motorSpeed(int x_lin, int y_lin, int z_ang)
+        MDCMotorCommand motorSpeed(double x_lin, double y_lin, double z_ang)
         {
             // Initialising MotorCommand instance/object motor_speed to store motor speeds
             MDCMotorCommand motor_speed;
@@ -68,12 +68,12 @@ class MDCController
             ticks_per_meter = tpm;
         }
 
-        void setWheelSeparationWidth(int wsw)
+        void setWheelSeparationWidth(double wsw)
         {
             wheel_separation_width = wsw;
         }
 
-        void setWheelSeparationLength(int wsl)
+        void setWheelSeparationLength(double wsl)
         {
             wheel_separation_length = wsl;
         }
@@ -82,8 +82,8 @@ class MDCController
         // Define robot parameters member variables
         int max_motor_speed; // Motor speed in ticks per second
         int ticks_per_meter; // Encoder ticks per meter traveled
-        int wheel_separation_width; // Wheel separation width in meters
-        int wheel_separation_length; // Wheel separation length in meters
+        double wheel_separation_width; // Wheel separation width in meters
+        double wheel_separation_length; // Wheel separation length in meters
 };
 
 #endif
