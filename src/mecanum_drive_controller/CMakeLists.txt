@@ -22,7 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-catkin_python_setup()
+#catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -135,7 +135,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/mecanum_drive_controller_node.cpp)
+# add_executable(${PROJECT_NAME}_node nodes/mecanum_drive_controller.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -206,3 +206,10 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(mecanum_drive_controller nodes/mecanum_drive_controller.cpp)
+target_link_libraries(mecanum_drive_controller ${catkin_LIBRARIES})
+
+## Add when odometry node is completed
+# add_executable(mecanum_drive_odometry nodes/mecanum_drive_odometry.cpp)
+# target_link_libraries(mecanum_drive_controller ${catkin_LIBRARIES})
