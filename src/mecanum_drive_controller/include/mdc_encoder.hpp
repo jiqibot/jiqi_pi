@@ -67,7 +67,7 @@ class MDCEncoder
         {
             // Uses delta_value to ensure correct accumulated delta_count is returned
             int delta_value = delta_count;
-            // Resets delta_count to zero to immediately restart accumulating ticks
+            // Resets delta_count to zero to immediately restart accumulating pulses
             delta_count = 0;
             // Performs negation if encoder is set as reversed 
             if (is_reversed)

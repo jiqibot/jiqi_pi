@@ -19,7 +19,7 @@ class MDCController
 {
     public:
         // Constructor initialising member variables SET AS DESIRED
-        MDCController() : max_motor_speed(0), ticks_per_meter(0), wheel_separation_width(0), wheel_separation_length(0) {}
+        MDCController() : max_motor_speed(0), pulses_per_meter(0), wheel_separation_width(0), wheel_separation_length(0) {}
 
         // Method to calculate motor speeds - returns values within a MotorCommand object 
         MDCMotorCommand motorSpeed(double x_lin, double y_lin, double z_ang)
@@ -28,10 +28,10 @@ class MDCController
             MDCMotorCommand motor_speed;
 
             // Calculating motor speed for each wheel_separation_length
-            motor_speed.FL = ticks_per_meter * (x_lin - y_lin - (wheel_separation_width + wheel_separation_length) * z_ang);
-            motor_speed.FR = ticks_per_meter * (x_lin + y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
-            motor_speed.RL = ticks_per_meter * (x_lin + y_lin - (wheel_separation_width + wheel_separation_length) * z_ang);
-            motor_speed.RR = ticks_per_meter * (x_lin - y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
+            motor_speed.FL = pulses_per_meter * (x_lin - y_lin - (wheel_separation_width + wheel_separation_length) * z_ang);
+            motor_speed.FR = pulses_per_meter * (x_lin + y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
+            motor_speed.RL = pulses_per_meter * (x_lin + y_lin - (wheel_separation_width + wheel_separation_length) * z_ang);
+            motor_speed.RR = pulses_per_meter * (x_lin - y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
 
             // Proportionally adjust motor speed if exceeding set maximum
             // Finds highest motor speed and compares to set maximum
@@ -63,9 +63,9 @@ class MDCController
             max_motor_speed = mms;
         }
 
-        void setTicksPerMeter(int tpm)
+        void setPulsesPerMeter(int tpm)
         {
-            ticks_per_meter = tpm;
+            pulses_per_meter = tpm;
         }
 
         void setWheelSeparationWidth(double wsw)
@@ -80,8 +80,8 @@ class MDCController
 
     private:
         // Define robot parameters member variables
-        int max_motor_speed; // Motor speed in ticks per second
-        int ticks_per_meter; // Encoder ticks per meter traveled
+        int max_motor_speed; // Motor speed in pulses per second
+        int pulses_per_meter; // Encoder pulses per meter traveled
         double wheel_separation_width; // Wheel separation width in meters
         double wheel_separation_length; // Wheel separation length in meters
 };

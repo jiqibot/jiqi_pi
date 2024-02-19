@@ -18,16 +18,16 @@ class MDCNode
             wheel_pub = nh.advertise<std_msgs::Int16MultiArray>("wheels_desired_rate", 1);
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
 
-            nh.param("ticks_per_meter", ticks_per_meter, 10000);
-            nh.param("wheel_separation", wheel_separation_width, 0.2);
-            nh.param("wheel_separation_length", wheel_separation_length, 0.3);
-            nh.param("max_motor_speed", max_motor_speed, 3000);
+            nh.param("pulses_per_meter", pulses_per_meter, 536);
+            nh.param("wheel_separation", wheel_separation_width, 0.58);
+            nh.param("wheel_separation_length", wheel_separation_length, 0.65);
+            nh.param("max_motor_speed", max_motor_speed, 256);
             nh.param("rate", rate, 10.0);
             nh.param("timeout", timeout, 0.2);
 
             controller.setWheelSeparationWidth(wheel_separation_width);
             controller.setWheelSeparationLength(wheel_separation_length);
-            controller.setTicksPerMeter(ticks_per_meter);
+            controller.setPulsesPerMeter(pulses_per_meter);
             controller.setMaxMotorSpeed(max_motor_speed);
 
             ros::Rate loop_rate(rate);
@@ -74,7 +74,7 @@ class MDCNode
         MDCController controller;
         double linear_x_velocity, linear_y_velocity, angular_velocity;
         double wheel_separation_width, wheel_separation_length;
-        int max_motor_speed, ticks_per_meter;
+        int max_motor_speed, pulses_per_meter;
         double rate, timeout;
         std_msgs::Int16MultiArray wheels_to_send;
 
