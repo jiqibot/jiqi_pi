@@ -88,8 +88,11 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "mecanum_drive_controller");
     MDCNode node;
-    node.main();
-    ROS_INFO("mecanum_drive_controller has started");
+    while (ros::ok())
+        {
+            node.main();
+        }
+    // ROS_INFO("mecanum_drive_controller has started");
 
     ros::waitForShutdown();
     // INSERT SHUTDOWN FUNCTIONS HERE
