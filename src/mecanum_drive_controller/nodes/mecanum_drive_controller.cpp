@@ -39,8 +39,16 @@ class MDCNode
                 ros::spinOnce();
                 loop_rate.sleep();
             }
+
+            shutdown();
         }
 
+        void shutdown()
+        {
+            std_msgs::Int16MultiArray stop_msg;
+                stop_msg.data = {0, 0, 0, 0};
+                wheel_pub.publish(stop_msg);
+        }
 
     private:
         // METHODS
@@ -88,12 +96,8 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "mecanum_drive_controller");
     MDCNode node;
-    while (ros::ok())
-        {
-            node.main();
-        }
-    // ROS_INFO("mecanum_drive_controller has started");
+    node.main();
+    ROS_INFO("mecanum_drive_controller has started");
 
-    ros::waitForShutdown();
-    // INSERT SHUTDOWN FUNCTIONS HERE
+    return 0;
 }
