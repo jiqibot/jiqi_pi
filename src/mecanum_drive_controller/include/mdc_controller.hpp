@@ -34,12 +34,13 @@ class MDCController
             motor_speed.RR = pulses_per_meter * (x_lin - y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
 
             // Proportionally adjust motor speed if exceeding set maximum
+            double max_abs_speed = std::max({std::abs(motor_speed.FL), std::abs(motor_speed.FR), std::abs(motor_speed.RL), std::abs(motor_speed.RR)});
             // Finds highest motor speed and compares to set maximum
-            if (std::max({motor_speed.FL, motor_speed.FR, motor_speed.RL, motor_speed.RR}) > max_motor_speed)
+            if (max_abs_speed > max_motor_speed)
             {
                 // Calculate factor required to scale motor speeds below set maximum
                 // Maximum is casted to type double to allow for a result of type double (double / int = double) 
-                double factor = static_cast<double>(max_motor_speed) / std::max({motor_speed.FL, motor_speed.FR, motor_speed.RL, motor_speed.RR});
+                double factor = static_cast<double>(max_motor_speed) / max_abs_speed;
                 // Multiply motor speeds by scale factor 
                 motor_speed.FL *= factor;
                 motor_speed.FR *= factor;

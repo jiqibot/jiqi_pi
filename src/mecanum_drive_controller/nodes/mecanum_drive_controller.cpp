@@ -19,7 +19,7 @@ class MDCNode
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
 
             nh.param("pulses_per_meter", pulses_per_meter, 536);
-            nh.param("wheel_separation", wheel_separation_width, 0.58);
+            nh.param("wheel_separation_width", wheel_separation_width, 0.58);
             nh.param("wheel_separation_length", wheel_separation_length, 0.65);
             nh.param("max_motor_speed", max_motor_speed, 256);
             nh.param("rate", rate, 10.0);

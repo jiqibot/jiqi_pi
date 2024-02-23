@@ -1,8 +1,8 @@
 <launch>
-    <arg name="max_motor_speed"      default="3000" />
-    <arg name="ticks_per_meter"      default="10000" />
-    <arg name="wheel_separation_width"      default="0.2" />
-    <arg name="wheel_separation_length"      default="0.3" />
+    <arg name="max_motor_speed"      default="256" />
+    <arg name="pulses_per_meter"      default="536" />
+    <arg name="wheel_separation_width"      default="0.58" />
+    <arg name="wheel_separation_length"      default="0.65" />
     <arg name="rate"      default="10.0" />
     <arg name="timeout"      default="0.2" />
     
@@ -13,7 +13,7 @@
     
     <node pkg="mecanum_drive_controller" type="mecanum_drive_controller" name="controller">
         <param name="max_motor_speed"           type="int"      value="$(arg max_motor_speed)"/>
-        <param name="ticks_per_meter"           type="int"      value="$(arg ticks_per_meter)"/>
+        <param name="pulses_per_meter"           type="int"      value="$(arg pulses_per_meter)"/>
         <param name="wheel_separation_width"    type="double"   value="$(arg wheel_separation_width)"/>
         <param name="wheel_separation_length"   type="double"   value="$(arg wheel_separation_length)"/>
         <param name="rate"                      type="double"   value="$(arg rate)"/>
