@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
-#include <std_msgs/Int16MultiArray.h>
+// #include <std_msgs/Int16MultiArray.h>
+#include <std_msgs/Int16.h>
 
 #include "../include/mdc_controller.hpp"
 
@@ -9,13 +10,14 @@ class MDCNode
     public:
         MDCNode() : controller(), linear_x_velocity(0.0), linear_y_velocity(0.0), angular_velocity(0.0)
         {
-            wheels_to_send.data.resize(4);
+            // wheels_to_send.data.resize(4);
         }
 
         void main()
         {
             ros::NodeHandle nh;
-            wheel_pub = nh.advertise<std_msgs::Int16MultiArray>("wheels_desired_rate", 1);
+            // wheel_pub = nh.advertise<std_msgs::Int16MultiArray>("wheels_desired_rate", 1);
+            wheel_pub = nh.advertise<std_msgs::Int16>("wheels_desired_rate", 1);
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
 
             nh.param("pulses_per_meter", pulses_per_meter, 536);
@@ -45,8 +47,10 @@ class MDCNode
 
         void shutdown()
         {
-            std_msgs::Int16MultiArray stop_msg;
-                stop_msg.data = {0, 0, 0, 0};
+            // std_msgs::Int16MultiArray stop_msg;
+            std_msgs::Int16 stop_msg;
+                // stop_msg.data = {0, 0, 0, 0};
+                stop_msg.data = 0;
                 wheel_pub.publish(stop_msg);
         }
 
@@ -57,16 +61,15 @@ class MDCNode
             if ((ros::Time::now() - last_twist_time).toSec() < timeout) {
                 auto speeds = controller.motorSpeed(linear_x_velocity, linear_y_velocity, angular_velocity);
 
-                wheels_to_send.data[0] = speeds.FL;
-                wheels_to_send.data[1] = speeds.FR;
-                wheels_to_send.data[2] = speeds.RL;
-                wheels_to_send.data[3] = speeds.RR;
+                // wheels_to_send.data[0] = speeds.FL;
+                // wheels_to_send.data[1] = speeds.FR;
+                // wheels_to_send.data[2] = speeds.RL;
+                // wheels_to_send.data[3] = speeds.RR;
+                wheels_to_send.data = speeds.FL;
 
                 wheel_pub.publish(wheels_to_send);
             } else {
-                std_msgs::Int16MultiArray stop_msg;
-                stop_msg.data = {0, 0, 0, 0};
-                wheel_pub.publish(stop_msg);
+                shutdown();
             }
         }
 
@@ -84,7 +87,8 @@ class MDCNode
         double wheel_separation_width, wheel_separation_length;
         int max_motor_speed, pulses_per_meter;
         double rate, timeout;
-        std_msgs::Int16MultiArray wheels_to_send;
+        // std_msgs::Int16MultiArray wheels_to_send;
+        std_msgs::Int16 wheels_to_send;
 
         // ALL ROS STUFF: SUBS, PUBS AND SERVICES
         ros::Time last_twist_time;
