@@ -22,6 +22,6 @@
 
     <node pkg="mecanum_drive_controller" type="motor_pwm_data.py" name="motor_pwm_data" output="screen"></node>
 
-    <include file="$(find articubot)/launch/hector_mapper.launch"></include>
+    <include file="$(find articubot)/launch/pi_move_base.launch"></include>
     
 </launch>

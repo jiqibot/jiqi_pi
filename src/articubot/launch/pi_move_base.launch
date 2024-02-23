@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <param name="/use_sim_time" value="false"/> 
+
+    <node name="rplidar_s2" pkg="rplidar_ros" type="rplidarNode" output="screen"> 
+        <param name="serial_port" type="string" value="/dev/RPLidarUSB"/>
+        <param name="serial_baudrate" type="int" value="1000000"/>
+        <param name="frame_id" type="string" value="laser"/>
+        <param name="inverted" type="bool" value="false"/>
+        <param name="angle_compensate" type="bool" value="true"/>
+    </node>
+
+    <!-- <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/description/robot.urdf.xacro"/> -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/jiqi_desc/jiqi_bot.urdf.xacro"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen"/>
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find articubot)/config/costmap_base_params.yaml" command="load" ns="global_costmap" /> 
+        <rosparam file="$(find articubot)/config/costmap_base_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find articubot)/config/local_costmap.yaml" command="load" />
+        <rosparam file="$(find articubot)/config/global_costmap.yaml" command="load" /> 
+        <rosparam file="$(find articubot)/config/base_speed_planner.yaml" command="load" />
+    </node>
+</launch>
