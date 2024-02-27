@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import rospy
-# This library is used as we are receiving Int32 messages - used as velocities are in the range 0-255
-from std_msgs.msg import Int16MultiArray
+# This library is used as we are receiving Float32MultiArray messages - used as velocities are in the range 0-255
+from std_msgs.msg import Float32MultiArray
 
 # Callback functions are called everytime a message is received - prints wheel speeds to screen
 def callback_pwm(motor_pwm):
@@ -17,7 +17,7 @@ rospy.init_node('motor_pwm_listener', anonymous=True)
 
 # Subscribe to the appropriate topics - names must match with Arduino code, specify type of message to be received and
     # callback function to be used
-rospy.Subscriber("motor_pwm_data", Int16MultiArray, callback_pwm)
+rospy.Subscriber("motor_pwm_data", Float32MultiArray, callback_pwm)
 
 # Spin the code
 rospy.spin()

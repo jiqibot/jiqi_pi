@@ -20,7 +20,7 @@
         <param name="timeout"                   type="double"   value="$(arg timeout)"/>
     </node>
 
-    <node pkg="mecanum_drive_controller" type="motor_pwm_data.py" name="motor_pwm_data" output="screen"></node>
+    <node pkg="mecanum_drive_controller" type="motor_pwm_listener.py" name="motor_pwm_listener" output="screen"></node>
 
     <include file="$(find articubot)/launch/pi_move_base.launch"></include>
     

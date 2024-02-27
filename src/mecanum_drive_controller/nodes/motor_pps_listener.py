@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-# This library is used as we are receiving Int32 messages - used as velocities are in the range 0-255
+# This library is used as we are receiving Int16MultiArray messages - used as velocities are in the range 0-255
 from std_msgs.msg import Int16MultiArray
 
 # Callback functions are called everytime a message is received - prints wheel speeds to screen
