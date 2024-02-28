@@ -3,19 +3,25 @@
 #include <std_msgs/Int16MultiArray.h>
 
 #include "../include/mdc_controller.hpp"
+#include "mecanum_drive_controller/motor_data.h"
 
 class MDCNode
 {
     public:
         MDCNode() : controller(), linear_x_velocity(0.0), linear_y_velocity(0.0), angular_velocity(0.0)
         {
-            motor_pps.data.resize(4);
+            // motor_pps.data.resize(4);
+            motor_pps.fl = 0;
+            motor_pps.fr = 0;
+            motor_pps.rl = 0;
+            motor_pps.rr = 0;
         }
 
         void main()
         {
             ros::NodeHandle nh;
-            motor_pps_pub = nh.advertise<std_msgs::Int16MultiArray>("motor_pps_data", 1);
+            // motor_pps_pub = nh.advertise<std_msgs::Int16MultiArray>("motor_pps_data", 1);
+            motor_pps_pub = nh.advertise<mecanum_drive_controller::motor_data>("motor_pps_data", 1);
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
 
             nh.param("pulses_per_meter", pulses_per_meter, 536);
@@ -45,9 +51,13 @@ class MDCNode
 
         void shutdown()
         {
-            std_msgs::Int16MultiArray stop_msg;
-                stop_msg.data = {0, 0, 0, 0};
-                motor_pps_pub.publish(stop_msg);
+            // std_msgs::Int16MultiArray stop_msg;
+            mecanum_drive_controller::motor_data stop_msg;
+            stop_msg.fl = 0;
+            stop_msg.fr = 0;
+            stop_msg.rl = 0;
+            stop_msg.rr = 0;
+            motor_pps_pub.publish(stop_msg);
         }
 
     private:
@@ -57,10 +67,14 @@ class MDCNode
             if ((ros::Time::now() - last_twist_time).toSec() < timeout) {
                 auto speeds = controller.motorSpeed(linear_x_velocity, linear_y_velocity, angular_velocity);
 
-                motor_pps.data[0] = speeds.FL;
-                motor_pps.data[1] = speeds.FR;
-                motor_pps.data[2] = speeds.RL;
-                motor_pps.data[3] = speeds.RR;
+                // motor_pps.data[0] = speeds.FL;
+                // motor_pps.data[1] = speeds.FR;
+                // motor_pps.data[2] = speeds.RL;
+                // motor_pps.data[3] = speeds.RR;
+                motor_pps.fl = speeds.FL;
+                motor_pps.fr = speeds.FR;
+                motor_pps.rl = speeds.RL;
+                motor_pps.rr = speeds.RR;
 
                 motor_pps_pub.publish(motor_pps);
             } else {
@@ -82,7 +96,8 @@ class MDCNode
         double wheel_separation_width, wheel_separation_length;
         int max_motor_speed, pulses_per_meter;
         double rate, timeout;
-        std_msgs::Int16MultiArray motor_pps;
+        // std_msgs::Int16MultiArray motor_pps;
+        mecanum_drive_controller::motor_data motor_pps;
 
         // ALL ROS STUFF: SUBS, PUBS AND SERVICES
         ros::Time last_twist_time;
