@@ -9,7 +9,7 @@ class MDCOdometry
 {
     public:
         // Constructor ...
-        MDCOdometry() : delta_time(0), last_time(0), ticks_per_meter(0), wheel_separation_width(0), wheel_separation_length(0), FL_travel(0), FR_travel(0), RL_travel(0), RR_travel(0), delta_x_travel(0), delta_y_travel(0), delta_z_rotate(0) {} // IMU last_yaw_deg(0), new_yaw_deg(0) {}
+        MDCOdometry() : delta_time(0), last_time(0), pulses_per_meter(0), wheel_separation_width(0), wheel_separation_length(0), FL_travel(0), FR_travel(0), RL_travel(0), RR_travel(0), delta_x_travel(0), delta_y_travel(0), delta_z_rotate(0) {} // IMU last_yaw_deg(0), new_yaw_deg(0) {}
 
         // Initialising four instances of the MDCEncoder class for each motor/wheel
         MDCEncoder FL_encoder, FR_encoder, RL_encoder, RR_encoder;
@@ -32,9 +32,9 @@ class MDCOdometry
             wheel_separation_length = separation;
         }
 
-        void setTicksPerMeter(int tpm)
+        void setPulsesPerMeter(int tpm)
         {
-            ticks_per_meter = tpm;
+            pulses_per_meter = tpm;
         }
 
         void setEncoderRange(int low, int high)
@@ -60,10 +60,10 @@ class MDCOdometry
 
         void updatePose(int new_time)
         {
-            FL_travel = FL_encoder.getDelta() / ticks_per_meter;
-            FR_travel = FR_encoder.getDelta() / ticks_per_meter;
-            RL_travel = RL_encoder.getDelta() / ticks_per_meter;
-            RR_travel = RR_encoder.getDelta() / ticks_per_meter;
+            FL_travel = FL_encoder.getDelta() / pulses_per_meter;
+            FR_travel = FR_encoder.getDelta() / pulses_per_meter;
+            RL_travel = RL_encoder.getDelta() / pulses_per_meter;
+            RR_travel = RR_encoder.getDelta() / pulses_per_meter;
             
             delta_time = new_time - last_time;
 
@@ -106,7 +106,7 @@ class MDCOdometry
         // IMU
         // double last_yaw_deg, new_yaw_deg;
         //
-        int ticks_per_meter;
+        int pulses_per_meter;
         double wheel_separation_width, wheel_separation_length;
         //
         double FL_travel, FR_travel, RL_travel, RR_travel;
