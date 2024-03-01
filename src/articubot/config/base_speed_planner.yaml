@@ -2,7 +2,6 @@ TrajectoryPlannerROS: # determines the speeds sent to robot when navigating
  
   # Robot Config (Speed, Accel, etc.) 
   max_vel_x: 0.3 #0.45
-<<<<<<< HEAD
   min_vel_x: 0.1 
   max_vel_theta: 0.4 #def 1.0
   min_vel_theta: -0.4 #def -1.0
@@ -36,7 +35,6 @@ TrajectoryPlannerROS: # determines the speeds sent to robot when navigating
   # Oscillation Prevention
   # Doesn't seem very good
   oscillation_reset_dist: 0.05 #def: 0.05 - How far the robot must travel in meters before oscillation flags are reset
-=======
   min_vel_x: -0.3
   max_vel_theta: 1.0
   min_in_place_vel_theta: -0.4
@@ -48,4 +46,3 @@ TrajectoryPlannerROS: # determines the speeds sent to robot when navigating
   occdist_scale: 0.01
 
   holonomic_robot: true # the final robot might be true
->>>>>>> c965a6115fc2fad6b0ae2444d13180f3ed530012
