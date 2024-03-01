@@ -1,6 +1,6 @@
 global_frame: map
 robot_base_frame: base_link
 
-footprint: [[-0.2, -0.1], [-0.2, 0.2], [0.2, 0.2], [0.2, -0.1]] # sets the bounds of the simulation robot
-# footprint: [[-0.35, -0.2075], [-0.35, 0.2075], [0.35, 0.2075], [0.35, -0.2075]] # bounds for jiqi
+#footprint: [[-0.2, -0.1], [-0.2, 0.2], [0.2, 0.2], [0.2, -0.1]] # sets the bounds of the simulation robot
+footprint: [[-0.35, -0.2075], [-0.35, 0.2075], [0.35, 0.2075], [0.35, -0.2075]] # bounds for jiqi
 footprint_padding: 0.05
