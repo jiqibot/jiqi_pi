@@ -55,11 +55,10 @@ class MDCNode
         {
             if (stop_msg = true)
             {
-                mecanum_drive_controller::motor_data stop_msg;
-                stop_msg.fl = 0;
-                stop_msg.fr = 0;
-                stop_msg.rl = 0;
-                stop_msg.rr = 0;
+                motor_pps.fl = 0;
+                motor_pps.fr = 0;
+                motor_pps.rl = 0;
+                motor_pps.rr = 0;
                 motor_pps_pub.publish(stop_msg); 
             }
 
