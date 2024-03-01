@@ -55,26 +55,28 @@ class MDCNode
 
         void personCheck()
         {
-            if (stop_msg == true)
+            if (stop_msg)
             {
                 motor_pps.fl = 0;
                 motor_pps.fr = 0;
                 motor_pps.rl = 0;
                 motor_pps.rr = 0;
                 motor_pps_pub.publish(motor_pps);
-                
+                ROS_INFO_STREAM("Stopped");
             }
 
-            else if (slow_msg == true)
+            else if (slow_msg)
             {
                 max_motor_speed = 128;
                 publish();
+                ROS_INFO_STREAM("Slowed");
             }
 
             else
             {
                 max_motor_speed = 256;
                 publish();
+                ROS_INFO_STREAM("Full Speed");
             }
 
             
