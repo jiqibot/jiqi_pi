@@ -14,6 +14,8 @@ class MDCNode
             motor_pps.fr = 0;
             motor_pps.rl = 0;
             motor_pps.rr = 0;
+            stop_msg = false;
+            slow_msg = false;
         }
 
         void main()
@@ -53,16 +55,17 @@ class MDCNode
 
         void personCheck()
         {
-            if (stop_msg = true)
+            if (stop_msg == true)
             {
                 motor_pps.fl = 0;
                 motor_pps.fr = 0;
                 motor_pps.rl = 0;
                 motor_pps.rr = 0;
-                motor_pps_pub.publish(stop_msg); 
+                motor_pps_pub.publish(motor_pps);
+                
             }
 
-            else if (slow_msg = true)
+            else if (slow_msg == true)
             {
                 max_motor_speed = 128;
                 publish();
