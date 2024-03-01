@@ -66,10 +66,14 @@ class MDCNode
             else if (slow_msg = true)
             {
                 max_motor_speed = 128;
+                publish();
             }
 
             else
-            {publish();}
+            {
+                max_motor_speed = 256;
+                publish();
+            }
 
             
         }
