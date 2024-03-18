@@ -3,7 +3,7 @@
 #include <std_msgs/Bool.h>
 
 #include "../include/mdc_controller.hpp"
-#include "mecanum_drive_controller/motor_data.h"
+#include "jiqi_mdc/motor_data.h"
 
 class MDCNode
 {
@@ -21,7 +21,7 @@ class MDCNode
         void main()
         {
             ros::NodeHandle nh;
-            motor_pps_pub = nh.advertise<mecanum_drive_controller::motor_data>("motor_pps_data", 1);
+            motor_pps_pub = nh.advertise<jiqi_mdc::motor_data>("motor_pps_data", 1);
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
             
             stop_obj_sub = nh.subscribe<std_msgs::Bool>("front_object_close_stop", 1, &MDCNode::stopCallback, this);
@@ -118,7 +118,7 @@ class MDCNode
         int max_motor_speed, pulses_per_meter;
         double rate, timeout;
         bool stop_msg, slow_msg;
-        mecanum_drive_controller::motor_data motor_pps;
+        jiqi_mdc::motor_data motor_pps;
 
         // ALL ROS STUFF: SUBS, PUBS AND SERVICES
         ros::Publisher motor_pps_pub;

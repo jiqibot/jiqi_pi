@@ -11,7 +11,7 @@ int controller()
 
     // Set motor parameters
     controller.setMaxMotorSpeed(0);
-    controller.setTicksPerMeter(0);
+    controller.setPulsesPerMeter(0);
     controller.setWheelSeparationWidth(0);
     controller.setWheelSeparationLength(0);
 

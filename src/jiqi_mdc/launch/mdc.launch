@@ -13,7 +13,7 @@
         <param name="baud"  type="int"      value="57600"/>
     </node>
     
-    <node pkg="mecanum_drive_controller" type="mecanum_drive_controller" name="controller">
+    <node pkg="jiqi_mdc" type="mecanum_drive_controller" name="controller" output="screen">
         <param name="max_motor_speed"           type="int"      value="$(arg max_motor_speed)"/>
         <param name="pulses_per_meter"           type="int"      value="$(arg pulses_per_meter)"/>
         <param name="wheel_separation_width"    type="double"   value="$(arg wheel_separation_width)"/>
@@ -22,6 +22,8 @@
         <param name="timeout"                   type="double"   value="$(arg timeout)"/>
     </node>
 
-    <node pkg="teleop_twist_keyboard"   type="teleop_twist_keyboard.py" name="teleop_twist_keyboard"    output="screen"></node>
+    <!-- <node pkg="jiqi_mdc" type="motor_pwm_listener.py" name="motor_pwm_listener" output="screen"></node> -->
+
+    <include file="$(find articubot)/launch/pi_move_base.launch"></include>
     
 </launch>

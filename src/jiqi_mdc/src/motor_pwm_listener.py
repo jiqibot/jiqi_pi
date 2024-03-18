@@ -2,7 +2,7 @@
 
 import rospy
 # This library is used as we are receiving Float32MultiArray messages - used as velocities are in the range 0-255
-from mecanum_drive_controller.msg import motor_data
+from jiqi_mdc.msg import motor_data
 
 # Callback functions are called everytime a message is received - prints wheel speeds to screen
 def callback_pwm(motor_pwm):
