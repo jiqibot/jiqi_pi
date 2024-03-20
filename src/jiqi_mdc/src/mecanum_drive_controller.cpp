@@ -27,10 +27,10 @@ class MDCNode
             stop_obj_sub = nh.subscribe<std_msgs::Bool>("front_object_close_stop", 1, &MDCNode::stopCallback, this);
             slow_obj_sub = nh.subscribe<std_msgs::Bool>("front_object_close_slow", 1, &MDCNode::slowCallback, this);
 
-            nh.param("pulses_per_meter", pulses_per_meter, 536);
-            nh.param("wheel_separation_width", wheel_separation_width, 0.58);
-            nh.param("wheel_separation_length", wheel_separation_length, 0.65);
-            nh.param("max_motor_speed", max_motor_speed, 256);
+            nh.getParam("pulses_per_meter", pulses_per_meter);
+            nh.getParam("wheel_separation_width", wheel_separation_width);
+            nh.getParam("wheel_separation_length", wheel_separation_length);
+            nh.getParam("max_motor_speed", max_motor_speed);
             nh.param("rate", rate, 10.0);
             nh.param("timeout", timeout, 0.2);
 

@@ -1,0 +1,42 @@
+<launch>
+
+    <!-- SENSORS -->
+    
+    <!-- Lidar Data Publisher -->
+    <!-- Used for obstacle avoidance and can be used for mapping --> 
+    <!-- Publications: /scan -->
+    <node name="rplidar_s2" pkg="rplidar_ros" type="rplidarNode" output="screen"> 
+        <param name="serial_port" type="string" value="/dev/RPLidarUSB"/>
+        <param name="serial_baudrate" type="int" value="1000000"/>
+        <param name="frame_id" type="string" value="laser"/>
+        <param name="inverted" type="bool" value="false"/>
+        <param name="angle_compensate" type="bool" value="true"/>
+    </node>
+
+    <!-- ZedCam (IMU/Pointcloud) SHOULD BE LAUNCHED AT THIS TIME FROM JETSON (DON'T KNOW HOW AT THE MOMENT) -->
+    
+
+    <!-- ODOMETRY -->
+    
+    <!-- Arduino Serial Node -->  
+    <!-- Subscriptons: /motor_pps_data -->
+    <!-- Publications:  /motor_pwm_data, [INSERT ENCODER TOPICS WHEN IMPLEMENTED] -->
+    <node pkg="rosserial_arduino" type="serial_node.py" name="serial_node" output="screen" >
+        <param name="port" type="string" value="/dev/ttyACM0" />
+        <param name="baud" type="int"   value="57600"         /> <!-- Try adjusting board rate to 115200? -->
+    </node>
+
+    <!-- Encoder Odometry -->
+    <!-- Subscriptions: /encoder_pps_data -->
+    <!-- Publications:  ENCODER DATA CONVERTED -->
+    <node pkg="jiqi_mdc" type="mecanum_drive_odometry" name="mdc_odometry" output="screen" >
+        <param name="insert_here"        type="int"    value="insert_here"        />
+    </node>
+
+ 
+    <!-- LAUNCH TRANSFORM CONFIGURATION (NO IDEA?) -->
+    <!-- <node pkg="transform_configuration_pkg" type="transform_configuration_type" name="transform_configuration_name" output="screen">
+        <param name="transform_configuration_param" value="param_value" />
+    </node> -->
+
+</launch> 
