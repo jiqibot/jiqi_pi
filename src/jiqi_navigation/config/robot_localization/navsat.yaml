@@ -1,0 +1,13 @@
+# IMU calibration
+yaw_offset: 0 # If IMU reads 0 when facing north (NED config) enter pi/2 (~1.5707963) to adjust to desired ENU config
+magnetic_declination_radians: 0.003665191 # Magnetic declination for location - see http://www.ngdc.noaa.gov/geomag-web
+
+# Configuration
+zero_altitude: false # Assumes robot is operating in a planar world
+use_odometry_yaw: false # Use IMU, not odometry, for yaw
+
+# Publishers
+publish_filtered_gps: true # Publishes robot position in GPS coordinates on /gps/filtered topic
+
+# ROS Parameters
+frequency: 10.0 

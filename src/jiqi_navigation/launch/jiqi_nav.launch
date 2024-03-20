@@ -6,25 +6,19 @@
     
     
     <!-- TRANSFORMS -->
-    <!-- Configuration -->
+    <!-- Footprint -->
     <node pkg="tf2_ros" type="static_transform_publisher" name="base_footprint_to_base_link" args="0 0 0.09 0 0 0 base_footprint base_link 30" />
     <!-- Sensor Links -->
     <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_laser" args="0.06 0 0.08 0 0 0 base_link laser 30" />
     <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_imu"   args="0 0.06 0.02 0 0 0 base_link imu 30"   />
 
 
-    <!-- NODES -->
-
     <!-- Base Controller -->
     <!-- Subscriptions: /cmd_vel, /front_object_close_slow, front_object_close_stop -->
     <!-- Publications:  /motor_pps_data -->
     <node pkg="jiqi_mdc" type="mecanum_drive_controller" name="mdc_controller" output="screen" >
-        <param name="max_motor_speed"         type="int"    value="256"                            />
-        <param name="pulses_per_meter"        type="int"    value="536"        />
-        <param name="wheel_separation_width"  type="double" value="0.58"  />
-        <param name="wheel_separation_length" type="double" value="0.65" />
-        <param name="rate"                    type="double" value="10.0"                           />
-        <param name="timeout"                 type="double" value="0.2"                            />
+        <!-- Define configuration file -->
+        <rosparam command="load" file="$(find jiqi_navigation)/config/jiqi_mdc/mdc_controller.yaml" />
     </node>
 
     <!-- Map Server -->
@@ -37,78 +31,65 @@
     <!--                  /slam_out_pose (estimated pose), /poseupdate (estimated pose with gaussian covariance estimate) -->
     <!-- Transforms: scanmatcher → map -->
     <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen" >
-        
         <!-- Define configuration file -->
-        <rosparam command="load" file="$(find jiqi_navigation)/config/hector_mapping/hector_mapping.yaml" />        
-        
+        <rosparam command="load" file="$(find jiqi_navigation)/config/hector_mapping/hector_mapping.yaml" />
     </node>
 
     <!-- AMCL -->
     <!-- Subscriptions: -->
     <!-- Publications: -->
-    <node name="amcl" pkg="amcl" type="amcl" clear_params="true" >
-        
+    <node name="amcl" pkg="amcl" type="amcl" clear_params="true" >        
         <!-- Define configuration file -->
         <rosparam command="load" file="$(find jiqi_navigation)/config/amcl/amcl.yaml" />
-
     </node>
 
     <!-- Extended Kalman Filter for Global Frame (map → odom) -->
     <!-- Subscriptions: -->
     <!-- Publications: -->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_global" clear_params="true" >
-        
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_global" clear_params="true" >        
         <!-- Define configuration file -->
-        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_global.yaml">
-
-        <!-- Remapping publications -->
+        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_global.yaml" >
+        <!-- Remap publications -->
         <remap from="odometry/filtered" to="odometry/global" />
-
     </node>
 
     <!-- GPS Data Preparation for Global Localisation -->
     <!-- Subscriptions: -->
-    <!-- Publications: -->
-    <node pkg="robot_localization" type="navsat_transform_node" name="navsat" output="screen" >
-        
+    <!-- Publications: odometry/gps, gps/filtered -->
+    <node pkg="robot_localization" type="navsat_transform_node" name="navsat" output="screen" >        
         <!-- Define configuration file -->
-        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/navsat.yaml">
-
-        <!-- Remapping subscriptions -->
+        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/navsat.yaml" >
+        <!-- Remap subscriptions -->
         <remap from="imu/data" to="imu/data" />
         <remap from="gps/fix" to="gps/fix" />
         <remap from="odometry/filtered" to="odometry/global" />
-        <!-- Remapping publications -->
+        <!-- Remap publications -->
         <remap from="gps/filtered" to="gps/filtered" />
         <remap from="odometry/gps" to="odometry/gps" />
-
     </node>
 
     <!-- Extended Kalman Filter for Local Frame (odom → base_link) -->
     <!-- Subscriptions: -->
-    <!-- Publications: -->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_local" clear_params="true" >
-        
+    <!-- Publications: /odometry/local -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_local" clear_params="true" >        
         <!-- Define configuration file -->
-        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_local.yaml">
-
-        <!-- Remapping publications -->
+        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_local.yaml" >
+        <!-- Remap publications -->
         <remap from="odometry/filtered" to="odometry/local" />
-
     </node>
 
     <!-- Move Base -->
     <!-- Subscriptions: /move_base_simple/goal -->
     <!-- Publications:  /cmd_vel -->
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-        
         <!-- Define configuration files -->
         <rosparam file="$(find jiqi_navigation)/config/move_base/costmap_common_params.yaml"    command="load" ns="global_costmap" />
         <rosparam file="$(find jiqi_navigation)/config/move_base/costmap_common_params.yaml"    command="load" ns="local_costmap"  />
         <rosparam file="$(find jiqi_navigation)/config/move_base/local_costmap_params.yaml"     command="load" />
         <rosparam file="$(find jiqi_navigation)/config/move_base/global_costmap_params.yaml"    command="load" />
         <rosparam file="$(find jiqi_navigation)/config/move_base/???_local_planner_params.yaml" command="load" />
-
+        <!-- Remap publications -->
+        <remap from="cmd_vel" to="cmd_vel" />
     </node>
 
 </launch>
