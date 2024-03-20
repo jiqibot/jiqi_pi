@@ -1,4 +1,8 @@
-TrajectoryPlannerROS: # determines the speeds sent to robot when navigating
+controller_frequency: 5 # controls the frequency that commands are generated and sent to robot to execute
+
+TrajectoryPlannerROS: # determines the speeds and movement sent to robot when navigating works with the local planner
+
+  controller_frequency: 5 # controls the frequency that path plan is computed and updated. Doesn't generate commands for the robot to execute, only the path plan (Hz)
  
   # Robot Config (Speed, Accel, etc)
   max_vel_x: 0.1 #0.45
@@ -16,7 +20,7 @@ TrajectoryPlannerROS: # determines the speeds sent to robot when navigating
 
   # Forward Simulation (Predictive Speed and Trajectory)
   # Increasing sim_time and vx samples will probably increase the processing power needed
-  sim_time: 2.5 # def: 1.0 - The amount of time (s) it simulates into future
+  sim_time: 1.0 # def: 1.0 - The amount of time (s) it simulates into future
   vx_samples: 5 # def: 3 - The number of speed samples it tries in the simulation of the future
 
   # Goal Tolerance
