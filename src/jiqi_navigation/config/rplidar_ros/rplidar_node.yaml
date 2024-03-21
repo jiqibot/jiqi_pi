@@ -1,0 +1,8 @@
+# Device Connection
+serial_port: /dev/RPLidarUSB # Define port (remapped from /dev/ttyUSB0)
+serial_baudrate: 1000000 # Set baudrate
+
+# Configuration
+frame_id: laser # Set frame name
+inverted: false # Is LiDAR inverted (upside-down)
+angle_compensate: true # Compensates for angle lag during motion

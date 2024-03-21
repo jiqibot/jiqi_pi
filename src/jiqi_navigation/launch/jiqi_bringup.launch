@@ -1,0 +1,36 @@
+<launch>
+
+    <!-- SENSORS -->
+    
+    <!-- Lidar Data Publisher -->
+    <!-- Publications: /scan -->
+    <node name="rplidar_s2" pkg="rplidar_ros" type="rplidar_node" output="screen"> 
+        <rosparam command="load" file="$(find jiqi_navigation)/config/rplidar_ros/rplidar_node.yaml" />
+    </node>
+
+    <!-- ZedCam (IMU/Pointcloud) SHOULD BE LAUNCHED AT THIS TIME FROM JETSON (DON'T KNOW HOW AT THE MOMENT) -->
+    
+
+    <!-- ODOMETRY -->
+    
+    <!-- Arduino Serial Node -->  
+    <!-- Subscriptons: /motor_pps_data -->
+    <!-- Publications:  /motor_pwm_data, [INSERT ENCODER TOPICS WHEN IMPLEMENTED] -->
+    <node pkg="rosserial_arduino" type="serial_node.py" name="serial_node" output="screen" >
+        <rosparam command="load" file="$(find jiqi_navigation)/config/rosserial_arduino/serial_node.yaml" />
+    </node>
+
+    <!-- Encoder Odometry -->
+    <!-- Subscriptions: /encoder_pps_data -->
+    <!-- Publications:  [ENCODER DATA CONVERTED], [POTENTIALLY IMU & POINTCLOUD DATA IF CONVERSION NEEDED] -->
+    <node pkg="jiqi_mdc" type="mecanum_drive_odometry" name="mdc_odometry" output="screen" >
+        <rosparam command="load" file="$(find jiqi_navigation)/config/jiqi_mdc/mdc_odometry.yaml" />
+    </node>
+
+ 
+    <!-- LAUNCH TRANSFORM CONFIGURATION (NO IDEA?) -->
+    <!-- <node pkg="transform_configuration_pkg" type="transform_configuration_type" name="transform_configuration_name" output="screen">
+        <param name="transform_configuration_param" value="param_value" />
+    </node> -->
+
+</launch> 

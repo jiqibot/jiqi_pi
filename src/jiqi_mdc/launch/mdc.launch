@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="max_motor_speed"             default="256" />
+    <arg name="pulses_per_meter"            default="536" />
+    <arg name="wheel_separation_width"      default="0.58" />
+    <arg name="wheel_separation_length"     default="0.65" />
+    <arg name="rate"                        default="10.0" />
+    <arg name="timeout"                     default="0.2" />
+    
+    <node pkg="rosserial_arduino"       type="serial_node.py"           name="serial_node"              output="screen">
+        <param name="port"  type="string"   value="/dev/ttyACM0"/>
+        <param name="baud"  type="int"      value="57600"/>
+    </node>
+    
+    <node pkg="jiqi_mdc" type="mecanum_drive_controller" name="controller" output="screen">
+        <param name="max_motor_speed"           type="int"      value="$(arg max_motor_speed)"/>
+        <param name="pulses_per_meter"          type="int"      value="$(arg pulses_per_meter)"/>
+        <param name="wheel_separation_width"    type="double"   value="$(arg wheel_separation_width)"/>
+        <param name="wheel_separation_length"   type="double"   value="$(arg wheel_separation_length)"/>
+        <param name="rate"                      type="double"   value="$(arg rate)"/>
+        <param name="timeout"                   type="double"   value="$(arg timeout)"/>
+    </node>
+
+    <!-- <node pkg="jiqi_mdc" type="motor_pwm_listener.py" name="motor_pwm_listener" output="screen"></node> -->
+
+    <include file="$(find articubot)/launch/pi_move_base.launch"></include>
+    
+</launch>

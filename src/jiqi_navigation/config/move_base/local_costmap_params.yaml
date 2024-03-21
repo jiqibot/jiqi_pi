@@ -1,0 +1,19 @@
+local_costmap:
+  # Defines which coordinate frame should the costmap run in
+  global_frame: odom
+  # Defines the coordinate frame referenced for robot base
+  robot_base_frame: base_link
+  # Define costmap update loop frequency (in Hz)
+  update_frequency: 15.0
+  # Define visualisation information update frequency (in Hz)
+  publish_frequency: 5.0
+  # Determines whether costmap should initialise based on map served by map_server (true) or not (false)
+  static_map: false
+  # Determines whether costmap remains centered on the robot during movement (true) or not (false)
+  rolling_window: true
+  # Set costmap width (in metres)
+  width: 3.0
+  # Set costmap height (in metres)
+  height: 3.0
+  # Set costmap resolution (in metres/cell)
+  resolution: 0.05
