@@ -31,7 +31,7 @@ class MDCController
             motor_speed.FL = pulses_per_meter * (x_lin - y_lin - (wheel_separation_width + wheel_separation_length) * z_ang);
             motor_speed.FR = pulses_per_meter * (x_lin + y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
             motor_speed.RL = pulses_per_meter * (x_lin + y_lin - (wheel_separation_width + wheel_separation_length) * z_ang);
-            motor_speed.RR = 4.4; //pulses_per_meter * (x_lin - y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
+            motor_speed.RR = pulses_per_meter * (x_lin - y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
 
             // // Proportionally adjust motor speed if exceeding set maximum
             // double max_abs_speed = std::max({std::abs(motor_speed.FL), std::abs(motor_speed.FR), std::abs(motor_speed.RL), std::abs(motor_speed.RR)});
