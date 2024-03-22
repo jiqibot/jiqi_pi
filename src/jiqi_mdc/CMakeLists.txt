@@ -107,7 +107,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES jiqi_mdc
-#  CATKIN_DEPENDS geometry_msgs nav_msgs rospy std_msgs tf
+   CATKIN_DEPENDS message_runtime # geometry_msgs nav_msgs rospy std_msgs tf
 #  DEPENDS system_lib
 )
 
@@ -208,6 +208,7 @@ include_directories(
 # catkin_add_nosetests(test)
 
 add_executable(mecanum_drive_controller src/mecanum_drive_controller.cpp)
+add_dependencies(mecanum_drive_controller jiqi_mdc_generate_messages_cpp)
 target_link_libraries(mecanum_drive_controller ${catkin_LIBRARIES})
 
 ## Add when odometry node is completed
