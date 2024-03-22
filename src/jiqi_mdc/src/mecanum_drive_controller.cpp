@@ -3,7 +3,7 @@
 #include <std_msgs/Bool.h>
 
 #include "../include/mdc_controller.hpp"
-#include "jiqi_mdc/motor_data.h"
+#include "jiqi_mdc/jiqi_data.h"
 // #include <std_msgs/Float32.h>
 
 class MDCNode
@@ -13,9 +13,9 @@ class MDCNode
         {
             // motor_pps.data = 0;
             motor_pps.fl = 0;
-            // motor_pps.fr = 0;
-            // motor_pps.rl = 0;
-            // motor_pps.rr = 0;
+            motor_pps.fr = 0;
+            motor_pps.rl = 0;
+            motor_pps.rr = 0;
             stop_msg = false;
             slow_msg = false;
         }
@@ -23,7 +23,7 @@ class MDCNode
         void main()
         {
             ros::NodeHandle nh;
-            motor_pps_pub = nh.advertise<jiqi_mdc::motor_data>("motor_pps_data", 1);
+            motor_pps_pub = nh.advertise<jiqi_mdc::jiqi_data>("motor_pps_data", 1);
             // motor_pps_pub = nh.advertise<std_msgs::Float32>("motor_pps_data", 1);
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
             
@@ -62,9 +62,9 @@ class MDCNode
             {
                 // motor_pps.data = 0;
                 motor_pps.fl = 0;
-                // motor_pps.fr = 0;
-                // motor_pps.rl = 0;
-                // motor_pps.rr = 0;
+                motor_pps.fr = 0;
+                motor_pps.rl = 0;
+                motor_pps.rr = 0;
                 motor_pps_pub.publish(motor_pps);
 		std::cout << "Before ROS_INFO" << std::endl;
                 ROS_INFO_STREAM("Stopped");
@@ -93,9 +93,9 @@ class MDCNode
 
             // motor_pps.data = speeds.FL;
             motor_pps.fl = speeds.FL;
-            // motor_pps.fr = speeds.FR;
-            // motor_pps.rl = speeds.RL;
-            // motor_pps.rr = speeds.RR;
+            motor_pps.fr = speeds.FR;
+            motor_pps.rl = speeds.RL;
+            motor_pps.rr = speeds.RR;
 
             motor_pps_pub.publish(motor_pps);
         }
@@ -124,7 +124,7 @@ class MDCNode
         int max_motor_speed, pulses_per_meter;
         double rate, timeout;
         bool stop_msg, slow_msg;
-        jiqi_mdc::motor_data motor_pps;
+        jiqi_mdc::jiqi_data motor_pps;
         // std_msgs::Float32 motor_pps;
 
         // ALL ROS STUFF: SUBS, PUBS AND SERVICES
