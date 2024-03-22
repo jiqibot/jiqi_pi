@@ -62,6 +62,7 @@ class MDCNode
                 motor_pps.rl = 0;
                 motor_pps.rr = 0;
                 motor_pps_pub.publish(motor_pps);
+		std::cout << "Before ROS_INFO" << std::endl;
                 ROS_INFO_STREAM("Stopped");
             }
 
