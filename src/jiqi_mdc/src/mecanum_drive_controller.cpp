@@ -87,6 +87,8 @@ class MDCNode
         {
             auto speeds = controller.motorSpeed(linear_x_velocity, linear_y_velocity, angular_velocity);
 
+            ROS_INFO_STREAM(linear_x_velocity);
+
             motor_pps.fl = speeds.FL;
             motor_pps.fr = speeds.FR;
             motor_pps.rl = speeds.RL;
