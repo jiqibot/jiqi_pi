@@ -33,26 +33,27 @@ class MDCController
             motor_speed.RL = pulses_per_meter * (x_lin + y_lin - (wheel_separation_width + wheel_separation_length) * z_ang);
             motor_speed.RR = pulses_per_meter * (x_lin - y_lin + (wheel_separation_width + wheel_separation_length) * z_ang);
 
-            // // Proportionally adjust motor speed if exceeding set maximum
-            // double max_abs_speed = std::max({std::abs(motor_speed.FL), std::abs(motor_speed.FR), std::abs(motor_speed.RL), std::abs(motor_speed.RR)});
-            // // Finds highest motor speed and compares to set maximum
-            // if (max_abs_speed > max_motor_speed)
-            // {
-            //     // Calculate factor required to scale motor speeds below set maximum
-            //     // Maximum is casted to type double to allow for a result of type double (double / int = double) 
-            //     double factor = static_cast<double>(max_motor_speed) / max_abs_speed;
-            //     // Multiply motor speeds by scale factor 
-            //     motor_speed.FL *= factor;
-            //     motor_speed.FR *= factor;
-            //     motor_speed.RL *= factor;
-            //     motor_speed.RR *= factor;
-            // }
+            // Proportionally adjust motor speed if exceeding set maximum
+            // Finds highest motor speed
+            double max_abs_speed = std::max({std::abs(motor_speed.FL), std::abs(motor_speed.FR), std::abs(motor_speed.RL), std::abs(motor_speed.RR)});
+            // Compares to set maximum
+            if (max_abs_speed > max_motor_speed)
+            {
+                // Calculate factor required to scale motor speeds below set maximum
+                // Maximum is casted to type double to allow for a result of type double (double / int = double) 
+                double factor = static_cast<double>(max_motor_speed) / max_abs_speed;
+                // Multiply motor speeds by scale factor 
+                motor_speed.FL *= factor;
+                motor_speed.FR *= factor;
+                motor_speed.RL *= factor;
+                motor_speed.RR *= factor;
+            }
 
-            // // Converts/casts motor speed from double to expected integer type (because in prior scaling: int * double = double)
-            // motor_speed.FL = static_cast<int>(motor_speed.FL);
-            // motor_speed.FR = static_cast<int>(motor_speed.FR);
-            // motor_speed.RL = static_cast<int>(motor_speed.RL);
-            // motor_speed.RR = static_cast<int>(motor_speed.RR);
+            // Converts/casts motor speed from double to expected integer type (because in prior scaling: int * double = double)
+            motor_speed.FL = static_cast<int>(motor_speed.FL);
+            motor_speed.FR = static_cast<int>(motor_speed.FR);
+            motor_speed.RL = static_cast<int>(motor_speed.RL);
+            motor_speed.RR = static_cast<int>(motor_speed.RR);
 
             // Return calculated motor speeds
             return motor_speed;
@@ -64,9 +65,9 @@ class MDCController
             max_motor_speed = mms;
         }
 
-        void setPulsesPerMeter(int tpm)
+        void setPulsesPerMeter(int ppm)
         {
-            pulses_per_meter = tpm;
+            pulses_per_meter = ppm;
         }
 
         void setWheelSeparationWidth(double wsw)
