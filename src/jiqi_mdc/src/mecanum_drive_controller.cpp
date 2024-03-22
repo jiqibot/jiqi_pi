@@ -31,8 +31,7 @@ class MDCNode
             nh.getParam("wheel_separation_width", wheel_separation_width);
             nh.getParam("wheel_separation_length", wheel_separation_length);
             nh.getParam("max_motor_speed", max_motor_speed);
-            nh.param("rate", rate, 10.0);
-            nh.param("timeout", timeout, 0.2);
+            nh.getParam("rate", rate);
 
             controller.setWheelSeparationWidth(wheel_separation_width);
             controller.setWheelSeparationLength(wheel_separation_length);
@@ -116,7 +115,7 @@ class MDCNode
         double linear_x_velocity, linear_y_velocity, angular_velocity;
         double wheel_separation_width, wheel_separation_length;
         int max_motor_speed, pulses_per_meter;
-        double rate, timeout;
+        double rate;
         bool stop_msg, slow_msg;
         jiqi_mdc::jiqi_data motor_pps;
 
