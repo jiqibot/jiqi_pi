@@ -20,18 +20,18 @@ class MDCNode
 
         void main()
         {
-            ros::NodeHandle nh("~");
+            ros::NodeHandle nh;
             motor_pps_pub = nh.advertise<jiqi_mdc::jiqi_data>("motor_pps_data", 1);
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
             
             stop_obj_sub = nh.subscribe<std_msgs::Bool>("front_object_close_stop", 1, &MDCNode::stopCallback, this);
             slow_obj_sub = nh.subscribe<std_msgs::Bool>("front_object_close_slow", 1, &MDCNode::slowCallback, this);
 
-            nh.getParam("pulses_per_meter", pulses_per_meter);
-            nh.getParam("wheel_separation_width", wheel_separation_width);
-            nh.getParam("wheel_separation_length", wheel_separation_length);
-            nh.getParam("max_motor_speed", max_motor_speed);
-            nh.getParam("rate", rate);
+            nh.getParam("/controller/pulses_per_meter", pulses_per_meter);
+            nh.getParam("/controller/wheel_separation_width", wheel_separation_width);
+            nh.getParam("/controller/wheel_separation_length", wheel_separation_length);
+            nh.getParam("/controller/max_motor_speed", max_motor_speed);
+            nh.getParam("/controller/rate", rate);
 
             controller.setWheelSeparationWidth(wheel_separation_width);
             controller.setWheelSeparationLength(wheel_separation_length);
