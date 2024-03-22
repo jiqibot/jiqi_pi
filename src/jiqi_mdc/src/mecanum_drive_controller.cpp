@@ -20,17 +20,17 @@ class MDCNode
 
         void main()
         {
-            ros::NodeHandle nh;
+            ros::NodeHandle nh("~");
             motor_pps_pub = nh.advertise<jiqi_mdc::jiqi_data>("motor_pps_data", 1);
             twist_sub = nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &MDCNode::twistCallback, this);
             
             stop_obj_sub = nh.subscribe<std_msgs::Bool>("front_object_close_stop", 1, &MDCNode::stopCallback, this);
             slow_obj_sub = nh.subscribe<std_msgs::Bool>("front_object_close_slow", 1, &MDCNode::slowCallback, this);
 
-            nh.param("pulses_per_meter", pulses_per_meter, 536);
-            nh.param("wheel_separation_width", wheel_separation_width, 0.58);
-            nh.param("wheel_separation_length", wheel_separation_length, 0.65);
-            nh.param("max_motor_speed", max_motor_speed, 256);
+            nh.getParam("pulses_per_meter", pulses_per_meter);
+            nh.getParam("wheel_separation_width", wheel_separation_width);
+            nh.getParam("wheel_separation_length", wheel_separation_length);
+            nh.getParam("max_motor_speed", max_motor_speed);
             nh.param("rate", rate, 10.0);
             nh.param("timeout", timeout, 0.2);
 
@@ -62,7 +62,6 @@ class MDCNode
                 motor_pps.rl = 0;
                 motor_pps.rr = 0;
                 motor_pps_pub.publish(motor_pps);
-		std::cout << "Before ROS_INFO" << std::endl;
                 ROS_INFO_STREAM("Stopped");
             }
 
@@ -86,9 +85,6 @@ class MDCNode
         void publish()
         {
             auto speeds = controller.motorSpeed(linear_x_velocity, linear_y_velocity, angular_velocity);
-
-            ROS_INFO_STREAM(linear_x_velocity);
-            ROS_INFO_STREAM("speeds.FL = " << speeds.FL);
 
             motor_pps.fl = speeds.FL;
             motor_pps.fr = speeds.FR;
@@ -136,7 +132,6 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "mecanum_drive_controller");
     MDCNode node;
     node.main();
-    ROS_INFO("mecanum_drive_controller has started");
 
     return 0;
 }
