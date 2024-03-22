@@ -43,7 +43,7 @@ class MDCNode
 
             while (ros::ok())
             {
-                personCheck();
+                publish(); //personCheck();
                 ros::spinOnce();
                 loop_rate.sleep();
             }
