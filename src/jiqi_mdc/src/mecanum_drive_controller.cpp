@@ -43,7 +43,7 @@ class MDCNode
 
             while (ros::ok())
             {
-                publish(); //personCheck();
+                personCheck();
                 ros::spinOnce();
                 loop_rate.sleep();
             }
@@ -89,10 +89,10 @@ class MDCNode
 
             ROS_INFO_STREAM(linear_x_velocity);
 
-            motor_pps.fl = speeds.FL;
-            motor_pps.fr = speeds.FR;
-            motor_pps.rl = speeds.RL;
-            motor_pps.rr = speeds.RR;
+            motor_pps.fl = 75; //speeds.FL;
+            motor_pps.fr = 75; //speeds.FR;
+            motor_pps.rl = 75; //speeds.RL;
+            motor_pps.rr = 75; //speeds.RR;
 
             motor_pps_pub.publish(motor_pps);
         }
