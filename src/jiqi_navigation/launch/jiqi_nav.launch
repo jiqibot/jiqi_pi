@@ -6,6 +6,7 @@
     
     
     <!-- TRANSFORMS -->
+    <!-- UNSURE IF THIS SHOULD BE HERE OR IN jiqi_bringup.launch WITH ROBOT STATE PUBLISHER E.G. ??? -->
     <!-- Footprint -->
     <node pkg="tf2_ros" type="static_transform_publisher" name="base_footprint_to_base_link" args="0 0 0.09 0 0 0 base_footprint base_link 30" />
     <!-- Sensor Links -->
@@ -33,12 +34,12 @@
         <rosparam command="load" file="$(find jiqi_navigation)/config/hector_mapping/hector_mapping.yaml" />
     </node>
 
-    <!-- AMCL -->
+    <!-- AMCL (IS THIS NEEDED AS WELL AS HECTOR MAPPING?)-->
     <!-- Subscriptions: -->
     <!-- Publications: -->
-    <node name="amcl" pkg="amcl" type="amcl" clear_params="true" >
+    <!-- <node name="amcl" pkg="amcl" type="amcl" clear_params="true" >
         <rosparam command="load" file="$(find jiqi_navigation)/config/amcl/amcl.yaml" />
-    </node>
+    </node> -->
 
     <!-- Extended Kalman Filter for Global Frame (map → odom) -->
     <!-- Subscriptions: -->
