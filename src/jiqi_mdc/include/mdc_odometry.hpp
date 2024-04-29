@@ -16,12 +16,6 @@ class MDCOdometry
         // Initialising an instance of the MDCPose class
         MDCPose pose;
 
-        // IMU
-        // void setYawAngleDeg(double yaw_ang)
-        // {
-        //     new_yaw_deg = yaw_ang;
-        // }
-
         void setWheelSeparatioWidth(double separation)
         {
             wheel_separation_width = separation;
@@ -70,8 +64,6 @@ class MDCOdometry
             delta_x_travel = (FL_travel + FR_travel + RL_travel + RR_travel);
             delta_y_travel = (-FL_travel + FR_travel + RL_travel - RR_travel);
             delta_z_rotate = (-FL_travel + FR_travel - RL_travel + RR_travel) / (2 * (wheel_separation_width + wheel_separation_length));
-            // IMU - convert to radians
-            // delta_z_rotate = (new_yaw_deg - last_yaw_deg) * (M_PI / 180);
 
             pose.x_lin_pos += delta_x_travel * cos(pose.z_ang_pos) - delta_y_travel * sin(pose.z_ang_pos);
             pose.y_lin_pos += delta_y_travel * cos(pose.z_ang_pos) + delta_x_travel * sin(pose.z_ang_pos);
@@ -82,8 +74,7 @@ class MDCOdometry
             pose.z_ang_vel = (delta_time > 0) ? delta_z_rotate / delta_time : 0;
 
             last_time = new_time;
-            // IMU
-            // last_yaw_deg = new_yaw_deg;
+
         }
 
         // MDCPose specifies the return type of the method
@@ -103,8 +94,6 @@ class MDCOdometry
     private:
         // 
         double delta_time, last_time;
-        // IMU
-        // double last_yaw_deg, new_yaw_deg;
         //
         int pulses_per_meter;
         double wheel_separation_width, wheel_separation_length;
