@@ -15,7 +15,7 @@ laser_scan_sensor:
 {
   sensor_frame: frame_name, # Sensor coordinate frame name
   data_type: LaserScan, # Set to LaserScan or PointCloud dependent on topic message type
-  topic: topic_name, # Topic name sensor publishes data on
+  topic: scan, # Topic name sensor publishes data on
   marking: true, # Will sensor add obstacle information to the costmap
   clearing: true # Will sensor clear obstacle information from the costmap
 }
