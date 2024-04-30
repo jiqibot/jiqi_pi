@@ -12,7 +12,7 @@
         <param name="baud"  type="int"      value="57600"/>
     </node>
     
-    <node pkg="jiqi_mdc" type="mecanum_drive_controller" name="controller" output="screen">
+    <node pkg="jiqi_mdc" type="mecanum_drive_controller" name="mecanum_drive_controller" output="screen">
         <param name="max_motor_speed"           type="int"      value="$(arg max_motor_speed)"/>
         <param name="pulses_per_meter"          type="int"      value="$(arg pulses_per_meter)"/>
         <param name="wheel_separation_width"    type="double"   value="$(arg wheel_separation_width)"/>

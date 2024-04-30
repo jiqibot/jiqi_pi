@@ -21,9 +21,9 @@
     </node>
 
     <!-- Encoder Odometry -->
-    <!-- Subscriptions: /encoder_pps_data -->
+    <!-- Subscriptions: /encoder_pulse_data -->
     <!-- Publications:  [ENCODER DATA CONVERTED], [POTENTIALLY IMU & POINTCLOUD DATA IF CONVERSION NEEDED] -->
-    <node pkg="jiqi_mdc" type="mecanum_drive_odometry" name="mdc_odometry" output="screen" >
+    <node pkg="jiqi_mdc" type="mecanum_drive_odometry" name="mecanum_drive_odometry" output="screen" >
         <rosparam command="load" file="$(find jiqi_navigation)/config/jiqi_mdc/mecanum_drive_odometry.yaml" />
     </node>
 

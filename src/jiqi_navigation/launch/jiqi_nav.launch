@@ -17,7 +17,7 @@
     <!-- Base Controller -->
     <!-- Subscriptions: /cmd_vel, /front_object_close_slow, front_object_close_stop -->
     <!-- Publications:  /motor_pps_data -->
-    <node pkg="jiqi_mdc" type="mecanum_drive_controller" name="mdc_controller" output="screen" >
+    <node pkg="jiqi_mdc" type="mecanum_drive_controller" name="mecanum_drive_controller" output="screen" >
         <rosparam command="load" file="$(find jiqi_navigation)/config/jiqi_mdc/mecanum_drive_controller.yaml" />
     </node>
 
