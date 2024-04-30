@@ -1,9 +1,6 @@
 #ifndef MDC_CONTROLLER_HPP
 #define MDC_CONTROLLER_HPP
 
-// Included to allow use of std::max function
-#include <algorithm>
-
 // Define class to hold motor control commands
 class MDCMotorCommand
 {

@@ -1,3 +1,10 @@
 # Robot Parameters
+max_motor_speed: 256
+pulses_per_meter: 536
+wheel_separation_width: 0.58
+wheel_separation_length: 0.65
 
 # ROS Parameters
+rate: 20.0
+base_frame_id: "base_link"
+odom_frame_id: "odom"

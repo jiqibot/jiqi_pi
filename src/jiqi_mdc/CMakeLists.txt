@@ -212,5 +212,6 @@ add_dependencies(mecanum_drive_controller jiqi_mdc_generate_messages_cpp)
 target_link_libraries(mecanum_drive_controller ${catkin_LIBRARIES})
 
 ## Add when odometry node is completed
-# add_executable(mecanum_drive_odometry src/mecanum_drive_odometry.cpp)
-# target_link_libraries(mecanum_drive_odometry ${catkin_LIBRARIES})
+add_executable(mecanum_drive_odometry src/mecanum_drive_odometry.cpp)
+add_dependencies(mecanum_drive_controller jiqi_mdc_generate_messages_cpp)
+target_link_libraries(mecanum_drive_odometry ${catkin_LIBRARIES})
