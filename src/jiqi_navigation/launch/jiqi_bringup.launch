@@ -4,7 +4,7 @@
     
     <!-- Lidar Data Publisher -->
     <!-- Publications: /scan -->
-    <node name="rplidar_s2" pkg="rplidar_ros" type="rplidar_node" output="screen"> 
+    <node name="rplidar_s2" pkg="rplidar_ros" type="rplidarNode" output="screen"> 
         <rosparam command="load" file="$(find jiqi_navigation)/config/rplidar_ros/rplidar_node.yaml" />
     </node>
 
