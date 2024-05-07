@@ -22,7 +22,7 @@
 
     <!-- Map Server -->
     <!-- Publications: /map, /map_metadata -->
-    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+    <!-- <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" /> -->
 
     <!-- LiDAR SLAM -->
     <!-- Subscriptions:   /scan, /syscommand (used for map/pose reset purposes) -->
