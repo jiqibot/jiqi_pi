@@ -24,6 +24,7 @@ laser_z_max_value: 1.0 # Maximum height (in metres) relative to LiDAR frame for 
         
 # Publishers 
 advertise_map_service: true # Determines whether map data should be published
+pub_odometry: true # Publishes a nav_msgs/odometry message on scanmatch_odom topic
         
 # Subscribers
 scan_subscriber_queue_size: 5 # Should be set to high values (e.g. 50) if scans are played back at faster than realtime speeds

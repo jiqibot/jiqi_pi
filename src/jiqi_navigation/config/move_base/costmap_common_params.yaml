@@ -3,7 +3,7 @@ obstacle_range: 2.5
 # Max range (in metres) freespace will be raytraced
 raytrace_range: 3.0
 # Set footprint of motor (centre assumed to be at (0.0, 0.0))
-footprint: [[x0, y0], [x1, y1], ... [xn, yn]]
+footprint: [[-0.35, -0.2075], [-0.35, 0.2075], [0.35, 0.2075], [0.35, -0.2075]]
 # Max distance (in metres) from obstacle that cost will be incurred
 inflation_radius: 0.55
 
@@ -13,7 +13,7 @@ observation_sources: laser_scan_sensor point_cloud_sensor
 # Set sensor parameters
 laser_scan_sensor:
 {
-  sensor_frame: frame_name, # Sensor coordinate frame name
+  sensor_frame: laser, # Sensor coordinate frame name
   data_type: LaserScan, # Set to LaserScan or PointCloud dependent on topic message type
   topic: scan, # Topic name sensor publishes data on
   marking: true, # Will sensor add obstacle information to the costmap
@@ -22,9 +22,9 @@ laser_scan_sensor:
 
 point_cloud_sensor:
 {
-  sensor_frame: frame_name,
+  sensor_frame: zedCamera,
   data_type: PointCloud,
-  topic: topic_name,
+  topic: point_cloud,
   marking: true,
   clearing: true
 }
