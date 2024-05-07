@@ -14,7 +14,7 @@ odom0: /odometry/encoder
 odom0_config: [ true,  true,  false,   # [ x_pos,     y_pos,      x_pos,
                 false, false, true,    #   roll,      pitch,      yaw,
                 false, false, false,   #   x_vel,     y_vel,      z_vel,
-                false, false, false    #   roll_vel,  pitch_vel,  yaw_vel,
+                false, false, false,    #   roll_vel,  pitch_vel,  yaw_vel,
                 false, false, false  ] #   x_accel,   y_accel,    z_accel  ]
 odom0_queue_size: 10 # Adjust sensor callback queue sizes for each sensor - useful if frequency parameter is lower than sensor frequency, allowing filter to use all measurements between update cycles
 odom0_nodelay: true # Disables Nagle's algorithm for potential lower-latency connection
