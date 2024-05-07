@@ -27,12 +27,4 @@
         <rosparam command="load" file="$(find jiqi_navigation)/config/jiqi_mdc/mecanum_drive_odometry.yaml" />
     </node>
 
- 
-    <!-- LAUNCH TRANSFORM CONFIGURATION (NO IDEA?) -->
-    <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/description/robot.urdf.xacro"/>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen"/>
-    <!-- <node pkg="transform_configuration_pkg" type="transform_configuration_type" name="transform_configuration_name" output="screen">
-        <param name="transform_configuration_param" value="param_value" />
-    </node> -->
-
 </launch> 

@@ -1,17 +1,16 @@
 <launch>
 
-    <!-- ARGUMENTS -->
+    <!-- ARGUMENTS / PARAMETERS -->
     <!-- Map Server -->
     <arg name="map_file" default="$(find jiqi_navigation)/maps/???.yaml"/> <!-- ADD MAPNAME / SOME KIND OF SELECTION METHOD HERE -->
-    
+    <!-- URDF -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/description/robot.urdf.xacro"/>
+
     
     <!-- TRANSFORMS -->
-    <!-- UNSURE IF THIS SHOULD BE HERE OR IN jiqi_bringup.launch WITH ROBOT STATE PUBLISHER E.G. ??? -->
-    <!-- Footprint -->
-    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="base_footprint_to_base_link" args="0 0 0.09 0 0 0 base_footprint base_link 30" /> -->
-    <!-- Sensor Links -->
-    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_laser" args="0.06 0 0.08 0 0 0 base_link laser 30" />
-    <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_imu"   args="0 0.06 0.02 0 0 0 base_link imu 30"   /> -->
+    
+    <!-- Robot State Publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
 
 
     <!-- Base Controller -->
