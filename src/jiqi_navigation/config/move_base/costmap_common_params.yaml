@@ -11,23 +11,23 @@ inflation_radius: 0.55
 observation_sources: laser_scan_sensor point_cloud_sensor
 
 # Set sensor parameters
-laser_scan_sensor:
-{
-  sensor_frame: laser, # Sensor coordinate frame name
-  data_type: LaserScan, # Set to LaserScan or PointCloud dependent on topic message type
-  topic: scan, # Topic name sensor publishes data on
-  marking: true, # Will sensor add obstacle information to the costmap
-  clearing: true # Will sensor clear obstacle information from the costmap
-}
+laser_scan_sensor: {sensor_frame: laser, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+# {
+#   sensor_frame: laser, # Sensor coordinate frame name
+#   data_type: LaserScan, # Set to LaserScan or PointCloud dependent on topic message type
+#   topic: scan, # Topic name sensor publishes data on
+#   marking: true, # Will sensor add obstacle information to the costmap
+#   clearing: true # Will sensor clear obstacle information from the costmap
+# }
 
-point_cloud_sensor:
-{
-  sensor_frame: zedCamera,
-  data_type: PointCloud,
-  topic: point_cloud,
-  marking: true,
-  clearing: true
-}
+point_cloud_sensor: {sensor_frame: zedCamera, data_type: PointCloud, topic: point_cloud, marking: true, clearing: true}
+# {
+#   sensor_frame: zedCamera,
+#   data_type: PointCloud,
+#   topic: point_cloud,
+#   marking: true,
+#   clearing: true
+# }
 
 # Costmap Layers
 
