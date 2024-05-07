@@ -9,3 +9,8 @@ global_costmap:
   static_map: true
   # Determines whether costmap remains centered on the robot during movement (true) or not (false)
   rolling_window: true
+
+  plugins:
+  - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+  - {name: static_layer, type: "costmap_2d::StaticLayer"}
+  - {name: inflater_layer, type: "costmap_2d::InflationLayer"}
