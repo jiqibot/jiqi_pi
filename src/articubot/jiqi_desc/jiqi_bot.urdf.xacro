@@ -3,6 +3,7 @@
 
     <xacro:include filename="jiqi_core.xacro"/>
     <xacro:include filename="rplidar.xacro"/>
+    <xacro:include filename="zed_cam.xacro"/>
 
     
 </robot>

@@ -5,7 +5,7 @@
 
             <!-- plugin config-->
             <robotBaseFrame>base_link</robotBaseFrame>
-            <updateRate>20</updateRate>
+            <updateRate>10.0</updateRate>
 
             <!-- wheel info-->
             <leftJoint>left_wheel_joint</leftJoint>
@@ -18,11 +18,12 @@
             <maxWheelAcceleration>10</maxWheelAcceleration>
 
             <!-- Output -->
-            <odometryFrame>odom123</odometryFrame> <!-- CHANGE BACK TO ODOM-->
-            <publishOdomTF>false</publishOdomTF> <!-- CHANGE BACK TO true-->
+            <odometryFrame>odom</odometryFrame> <!-- CHANGE BACK TO ODOM-->
+            <publishOdom>true</publishOdom> <!-- CHANGE BACK TO true-->
             <publishWheelTF>false</publishWheelTF> <!-- CHANGE BACK TO true-->
-            <odometryTopic>odom123</odometryTopic>
-            <publishTF>0</publishTF>
+            <odometryTopic>odom</odometryTopic>
+            <publishTF>1</publishTF>
+            <odometrySource>1</odometrySource>
 
         </plugin>
     </gazebo>

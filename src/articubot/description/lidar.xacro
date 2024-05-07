@@ -27,7 +27,7 @@
     <gazebo reference="laser">
         <material>Gazebo/Red</material>
         <sensor name="laser" type="ray">
-            <updateRate>20</updateRate>
+            <updateRate>10.0</updateRate>
             <visualize>false</visualize> <!-- to see lidar line in gazebo set to true-->
             <pose>0 0 0 0 0 0</pose>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -42,7 +42,7 @@
                     </horizontal>
                 </scan>
                 <range>
-                    <min>0.3</min>
+                    <min>0.1</min>
                     <max>12</max>
                     <resolution>0.01</resolution>
                 </range>

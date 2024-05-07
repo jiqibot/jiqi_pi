@@ -27,7 +27,9 @@ TebLocalPlannerROS: # For Omnidirectional Robots
   min_turning_radius: 0.0 # omni-drive robot (can turn on place!)
 
   footprint_model:
-    type: "point"
+    type: "line"
+    line_start: [-0.15, 0.0]
+    line_end: [0.15, 0.0]
 
   # GoalTolerance
       

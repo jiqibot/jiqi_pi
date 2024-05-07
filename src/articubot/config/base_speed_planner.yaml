@@ -1,8 +1,8 @@
-controller_frequency: 5 # controls the frequency that commands are generated and sent to robot to execute
+controller_frequency: 10 # controls the frequency that commands are generated and sent to robot to execute
 
 TrajectoryPlannerROS: # determines the speeds and movement sent to robot when navigating works with the local planner
 
-  controller_frequency: 5 # controls the frequency that path plan is computed and updated. Doesn't generate commands for the robot to execute, only the path plan (Hz)
+  controller_frequency: 10 # controls the frequency that path plan is computed and updated. Doesn't generate commands for the robot to execute, only the path plan (Hz)
  
   # Robot Config (Speed, Accel, etc)
   max_vel_x: 0.1 #0.45
