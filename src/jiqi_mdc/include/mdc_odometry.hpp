@@ -45,7 +45,7 @@ class MDCOdometry
             RR_encoder.updateCount(RR);
         }
 
-        void updatePose(int new_time)
+        void updatePose(double new_time)
         {
             // Updates encoder data and converts from pulses to distance traveled (per wheel)
             FL_travel = FL_encoder.getDelta() / pulses_per_meter;
