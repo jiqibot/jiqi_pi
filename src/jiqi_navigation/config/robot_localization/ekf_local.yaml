@@ -22,28 +22,28 @@ odom0_differential: false # Specify whether the pose variables should be integra
 odom0_relative: false # Sensor will be fused relative to the first measurement received - when using differential setting for angular variables this should be enabled to prevent growing without bounds.
 
 # LiDAR (hector_mapping) setup
-odom1: /scanmatch_odom
-odom1_config: [ false, false, false,
-                false, false, false,
-                true,  true,  true,
-                false, false, true,
-                false, false, false  ]
-odom1_queue_size: 10
-odom1_nodelay: true
-odom1_differential: false
-odom1_relative: false
+# odom1: /scanmatch_odom
+# odom1_config: [ false, false, false,
+#                 false, false, false,
+#                 true,  true,  true,
+#                 false, false, true,
+#                 false, false, false  ]
+# odom1_queue_size: 10
+# odom1_nodelay: true
+# odom1_differential: false
+# odom1_relative: false
 
 # IMU setup
-imu0: /imu/data
-imu0_config: [ false, false, false,
-               false, false, true,
-               false, false, false,
-               false, false, true,
-               true,  true,  false  ] # y_accel set to true as robot is holonomic
-imu0_queue_size: 10
-imu0_nodelay: true
-imu0_differential: false
-imu0_relative: false
+# imu0: /imu/data
+# imu0_config: [ false, false, false,
+#                false, false, true,
+#                false, false, false,
+#                false, false, true,
+#                true,  true,  false  ] # y_accel set to true as robot is holonomic
+# imu0_queue_size: 10
+# imu0_nodelay: true
+# imu0_differential: false
+# imu0_relative: false
 
 
 # Process noise covariance matrix - represents the noise we add to the total error after each prediction step

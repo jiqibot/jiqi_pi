@@ -29,9 +29,9 @@
     <!-- Publications:    /map, /map_metadata, /slam_cloud, /scanmatch_odom (odometry as a nav_msgs/Odometry message) -->
     <!--                  /slam_out_pose (estimated pose), /poseupdate (estimated pose with gaussian covariance estimate) -->
     <!-- Transforms: scanmatcher → map -->
-    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen" >
+    <!-- <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen" >
         <rosparam command="load" file="$(find jiqi_navigation)/config/hector_mapping/hector_mapping.yaml" />
-    </node>
+    </node> -->
 
     <!-- AMCL (IS THIS NEEDED AS WELL AS HECTOR MAPPING?)-->
     <!-- Subscriptions: -->
@@ -78,8 +78,8 @@
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
         <rosparam file="$(find jiqi_navigation)/config/move_base/costmap_common_params.yaml"    command="load" ns="global_costmap" />
         <rosparam file="$(find jiqi_navigation)/config/move_base/costmap_common_params.yaml"    command="load" ns="local_costmap"  />
-        <rosparam file="$(find jiqi_navigation)/config/move_base/local_costmap_params.yaml"     command="load" />
-        <rosparam file="$(find jiqi_navigation)/config/move_base/global_costmap_params.yaml"    command="load" />
+        <rosparam file="$(find jiqi_navigation)/config/move_base/local_costmap_params.yaml"     command="load" ns="local_costmap"  />
+        <rosparam file="$(find jiqi_navigation)/config/move_base/global_costmap_params.yaml"    command="load" ns="global_costmap" />
         <rosparam file="$(find jiqi_navigation)/config/move_base/teb_local_planner_params.yaml" command="load" />
         <!-- <rosparam file="$(find jiqi_navigation)/config/move_base/costmap_converter_params.yaml" command="load" /> -->
         <rosparam file="$(find jiqi_navigation)/config/move_base/move_base_params.yaml"         command="load" />

@@ -1,5 +1,8 @@
 TebLocalPlannerROS: # For Omnidirectional Robots
-   
+
+  odom_topic: odometry/local # Odometry topic name
+  map_frame: odom # Change to map if using a static map
+
   # Trajectory
     
   teb_autosize: True
