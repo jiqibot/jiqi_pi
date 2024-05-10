@@ -4,10 +4,9 @@ odom_frame: odom # Set odom frame name
 base_frame: base_link # Set base frame name
         
 # Transforms
-pub_map_odom_transform: false # Prevents map → odom transform from being published (due to ekf_global conflict)
+pub_map_odom_transform: true # Prevents map → odom transform from being published (due to ekf_global conflict)
 pub_map_scanmatch_transform: true # Publishes scanmatcher → map transform
 tf_map_scanmatch_transform_frame_name: scanmatcher_frame # Sets frame name of scanmatcher → map transform (UNSURE IF THIS WILL CAUSE CONFLICTS WITH ekf_global)
-pub_odometry: true # Publishes odometry as a nav_msgs/Odometry message on the /scanmatch_odom topic (UNDOCUMENTED PARAMETER)
         
 # Map Dimensions
 map_resolution: 0.05 # Length of a grid cell (in metres)
@@ -24,7 +23,7 @@ laser_z_max_value: 1.0 # Maximum height (in metres) relative to LiDAR frame for 
         
 # Publishers 
 advertise_map_service: true # Determines whether map data should be published
-pub_odometry: true # Publishes a nav_msgs/odometry message on scanmatch_odom topic
+pub_odometry: true # Publishes a nav_msgs/odometry message on scanmatch_odom topic (UNDOCUMENTED PARAMETER)
         
 # Subscribers
 scan_subscriber_queue_size: 5 # Should be set to high values (e.g. 50) if scans are played back at faster than realtime speeds

@@ -43,11 +43,11 @@
     <!-- Extended Kalman Filter for Global Frame (map → odom) -->
     <!-- Subscriptions: -->
     <!-- Publications: -->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_global" clear_params="true" >
-        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_global.yaml" />
+    <!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_global" clear_params="true" >
+        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_global.yaml" /> -->
         <!-- Remap publications -->
-        <remap from="odometry/filtered" to="odometry/global" />
-    </node>
+        <!-- <remap from="odometry/filtered" to="odometry/global" />
+    </node> -->
 
     <!-- GPS Data Preparation for Global Localisation -->
     <!-- Subscriptions: -->
