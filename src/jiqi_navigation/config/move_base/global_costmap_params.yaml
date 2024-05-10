@@ -4,6 +4,8 @@ global_frame: map
 robot_base_frame: base_link
 # Define costmap update loop frequency (in Hz)
 update_frequency: 15.0
+# Define visualisation information update frequency (in Hz)
+publish_frequency: 5.0
 # Determines whether costmap should initialise based on map served by map_server (true) or not (false)
 static_map: true
 # Determines whether costmap remains centered on the robot during movement (true) or not (false)
