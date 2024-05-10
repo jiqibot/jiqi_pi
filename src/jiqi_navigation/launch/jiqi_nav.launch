@@ -4,7 +4,7 @@
     <!-- Map Server -->
     <arg name="map_file" default="$(find jiqi_navigation)/maps/test_map.yaml"/> <!-- ADD MAPNAME / SOME KIND OF SELECTION METHOD HERE -->
     <!-- URDF -->
-    <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/description/robot.urdf.xacro"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/description/jiqi_bot.urdf.xacro"/>
 
     
     <!-- TRANSFORMS -->
