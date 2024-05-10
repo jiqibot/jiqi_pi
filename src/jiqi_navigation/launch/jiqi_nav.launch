@@ -2,7 +2,7 @@
 
     <!-- ARGUMENTS / PARAMETERS -->
     <!-- Map Server -->
-    <arg name="map_file" default="$(find jiqi_navigation)/maps/???.yaml"/> <!-- ADD MAPNAME / SOME KIND OF SELECTION METHOD HERE -->
+    <arg name="map_file" default="$(find jiqi_navigation)/maps/test_map.yaml"/> <!-- ADD MAPNAME / SOME KIND OF SELECTION METHOD HERE -->
     <!-- URDF -->
     <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/description/robot.urdf.xacro"/>
 
@@ -22,16 +22,16 @@
 
     <!-- Map Server -->
     <!-- Publications: /map, /map_metadata -->
-    <!-- <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" /> -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
 
     <!-- LiDAR SLAM -->
     <!-- Subscriptions:   /scan, /syscommand (used for map/pose reset purposes) -->
     <!-- Publications:    /map, /map_metadata, /slam_cloud, /scanmatch_odom (odometry as a nav_msgs/Odometry message) -->
     <!--                  /slam_out_pose (estimated pose), /poseupdate (estimated pose with gaussian covariance estimate) -->
     <!-- Transforms: scanmatcher → map -->
-    <!-- <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen" >
+    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen" >
         <rosparam command="load" file="$(find jiqi_navigation)/config/hector_mapping/hector_mapping.yaml" />
-    </node> -->
+    </node>
 
     <!-- AMCL (IS THIS NEEDED AS WELL AS HECTOR MAPPING?)-->
     <!-- Subscriptions: -->
@@ -43,11 +43,11 @@
     <!-- Extended Kalman Filter for Global Frame (map → odom) -->
     <!-- Subscriptions: -->
     <!-- Publications: -->
-    <!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_global" clear_params="true" >
-        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_global.yaml" /> -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_global" clear_params="true" >
+        <rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_global.yaml" />
         <!-- Remap publications -->
-        <!-- <remap from="odometry/filtered" to="odometry/global" />
-    </node> -->
+        <remap from="odometry/filtered" to="odometry/global" />
+    </node>
 
     <!-- GPS Data Preparation for Global Localisation -->
     <!-- Subscriptions: -->

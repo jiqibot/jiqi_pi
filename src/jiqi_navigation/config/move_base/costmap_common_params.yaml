@@ -7,9 +7,6 @@ footprint: [[-0.35, -0.2075], [-0.35, 0.2075], [0.35, 0.2075], [0.35, -0.2075]]
 # Max distance (in metres) from obstacle that cost will be incurred
 inflation_radius: 0.55
 
-# Defines sensors passing information to the costmap (LiDAR, ZED Camera?)
-observation_sources: laser_scan_sensor point_cloud_sensor
-
 # Costmap Layers
 
 static_layer:
@@ -18,7 +15,7 @@ static_layer:
   lethal_cost_threshold: 100
 
 obstacle_layer:
-  observation_sources: laser_scan_sensor #, point_cloud_sensor
+  observation_sources: laser_scan_sensor #point_cloud_sensor
   laser_scan_sensor:
     sensor_frame: laser # Sensor coordinate frame name
     data_type: LaserScan # Set to LaserScan or PointCloud dependent on topic message type

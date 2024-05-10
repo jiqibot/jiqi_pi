@@ -23,10 +23,10 @@
     <!-- Encoder Odometry -->
     <!-- Subscriptions: /encoder_pulse_data -->
     <!-- Publications:  [ENCODER DATA CONVERTED], [POTENTIALLY IMU & POINTCLOUD DATA IF CONVERSION NEEDED] -->
-    <node pkg="jiqi_mdc" type="mecanum_drive_odometry" name="mecanum_drive_odometry" output="screen" >
+    <!-- <node pkg="jiqi_mdc" type="mecanum_drive_odometry" name="mecanum_drive_odometry" output="screen" >
         <rosparam command="load" file="$(find jiqi_navigation)/config/jiqi_mdc/mecanum_drive_odometry.yaml" />
-    </node>
-    s
+    </node> -->
+    
     <include file="$(find articubot)/launch/pi_move_base.launch"></include>
     
 </launch>
