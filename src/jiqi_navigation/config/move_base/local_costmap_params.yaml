@@ -1,5 +1,5 @@
 # Defines which coordinate frame should the costmap run in
-global_frame: map
+global_frame: odom
 # Defines the coordinate frame referenced for robot base
 robot_base_frame: base_link
 # Define costmap update loop frequency (in Hz)
