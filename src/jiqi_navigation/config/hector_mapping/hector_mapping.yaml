@@ -4,8 +4,8 @@ odom_frame: odom # Set odom frame name
 base_frame: base_link # Set base frame name
         
 # Transforms
-pub_map_odom_transform: true # Prevents map → odom transform from being published (due to ekf_global conflict)
-pub_map_scanmatch_transform: true # Publishes scanmatcher → map transform
+pub_map_odom_transform: true # Determines if map → odom transforms are published (due to ekf_global conflict)
+pub_map_scanmatch_transform: false # Publishes scanmatcher → map transform
 tf_map_scanmatch_transform_frame_name: scanmatcher_frame # Sets frame name of scanmatcher → map transform (UNSURE IF THIS WILL CAUSE CONFLICTS WITH ekf_global)
         
 # Map Dimensions
