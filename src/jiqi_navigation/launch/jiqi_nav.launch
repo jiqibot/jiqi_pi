@@ -81,7 +81,7 @@
         <rosparam file="$(find jiqi_navigation)/config/move_base/local_costmap_params.yaml"     command="load" ns="local_costmap"  />
         <rosparam file="$(find jiqi_navigation)/config/move_base/global_costmap_params.yaml"    command="load" ns="global_costmap" />
         <rosparam file="$(find jiqi_navigation)/config/move_base/teb_local_planner_params.yaml" command="load" />
-        <!-- <rosparam file="$(find jiqi_navigation)/config/move_base/costmap_converter_params.yaml" command="load" /> -->
+        <rosparam file="$(find jiqi_navigation)/config/move_base/costmap_converter_params.yaml" command="load" />
         <rosparam file="$(find jiqi_navigation)/config/move_base/move_base_params.yaml"         command="load" />
         <!-- Remap subscriptions -->
         <remap from="odom" to="odometry/local" />
