@@ -32,7 +32,6 @@
 
     <!-- ARGUMENTS / PARAMETERS -->
     <!-- Map Server -->
-    <arg name="map_file" default="$(find jiqi_navigation)/maps/test_map.yaml"/> <!-- ADD MAPNAME / SOME KIND OF SELECTION METHOD HERE -->
     <!-- URDF -->
     <param name="robot_description" command="$(find xacro)/xacro $(find articubot)/jiqi_desc/jiqi_bot.urdf.xacro"/>
 
