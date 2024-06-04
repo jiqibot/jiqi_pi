@@ -8,6 +8,8 @@
 		<rosparam command="load" file="$(find jiqi_navigation)/config/rplidar_ros/rplidar_node.yaml" />
 	</node>
 	
+	<!-- GPS Driver -->
+	<!-- Publications: /gps/fix -->
 	<node name="nmea_serial_driver_node" pkg="nmea_navsat_driver" type="nmea_serial_driver" output="screen" >
 		<rosparam command="load" file="$(find jiqi_navigation)/config/nmea_navsat_driver/nmea_navsat_driver.yaml" />
 	</node>
