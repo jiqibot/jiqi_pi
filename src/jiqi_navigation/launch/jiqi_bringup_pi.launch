@@ -1,0 +1,29 @@
+<launch>
+
+	<!-- INITIALISATION -->
+	
+	<!-- LiDAR Data Publisher -->
+	<!-- Publications: /scan -->
+	<node pkg="rplidar_ros" type="rplidarNode" name="rplidar_s2" output="screen" > 
+		<rosparam command="load" file="$(find jiqi_navigation)/config/rplidar_ros/rplidar_node.yaml" />
+	</node>
+	
+	<node name="nmea_serial_driver_node" pkg="nmea_navsat_driver" type="nmea_serial_driver" output="screen" >
+		<rosparam command="load" file="$(find jiqi_navigation)/config/nmea_navsat_driver/nmea_navsat_driver.yaml" />
+	</node>
+	
+	<!-- Arduino Serial Node -->  
+	<!-- Subscriptons: /motor_pps_data -->
+	<!-- Publications: /motor_pwm_data, /encoder_pulse_data -->
+	<node pkg="rosserial_arduino" type="serial_node.py" name="serial_node" output="screen" >
+		<rosparam command="load" file="$(find jiqi_navigation)/config/rosserial_arduino/serial_node.yaml" />
+	</node>
+
+	<!-- Encoder Odometry -->
+	<!-- Subscriptions: /encoder_pulse_data -->
+	<!-- Publications:  /odometry/encoder -->
+	<node pkg="jiqi_mdc" type="mecanum_drive_odometry" name="mecanum_drive_odometry" output="screen" >
+		<rosparam command="load" file="$(find jiqi_navigation)/config/jiqi_mdc/mecanum_drive_odometry.yaml" />
+	</node>
+	
+</launch>
