@@ -1,0 +1,73 @@
+<launch>
+
+	<!-- PARAMETERS -->
+	
+	<!-- URDF -->
+	<param name="robot_description" command="$(find xacro)/xacro $(find jiqi_navigation)/urdf/jiqi.urdf.xacro" />
+
+	
+	<!-- TRANSFORMS -->
+	
+	<!-- Robot State Publisher -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+
+
+	<!-- NAVIGATION -->
+	
+	<!-- Base Controller -->
+	<!-- Subscriptions: /cmd_vel, /front_object_close_slow, /front_object_close_stop -->
+	<!-- Publications:  /motor_pps_data -->
+	<node pkg="jiqi_mdc" type="mecanum_drive_controller" name="mecanum_drive_controller" output="screen" >
+		<rosparam command="load" file="$(find jiqi_navigation)/config/jiqi_mdc/mecanum_drive_controller.yaml" />
+	</node>
+
+	<!-- LiDAR SLAM -->
+	<!-- Subscriptions: /scan -->
+	<!-- Publications:  /map, /scanmatch_odom (odometry as a nav_msgs/Odometry message) -->
+	<node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen" >
+		<rosparam command="load" file="$(find jiqi_navigation)/config/hector_mapping/hector_mapping.yaml" />
+	</node>
+
+	<!-- Extended Kalman Filter for Global Frame (map → odom) -->
+	<!-- Subscriptions: /odometry/gps, /odometry/encoder, /imu/data, /scanmatch_odom -->
+	<!-- Publications:  /odometry/global -->
+	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_global" clear_params="true" >
+		<rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_global.yaml" />
+		<!-- Remap publications -->
+		<remap from="odometry/filtered" to="odometry/global" />
+	</node>
+
+	<!-- GPS Data Preparation for Global Localisation -->
+	<!-- Subscriptions: /odometry/global, /imu/data, /gps/fix -->
+	<!-- Publications:  /odometry/gps -->
+	<node pkg="robot_localization" type="navsat_transform_node" name="navsat" output="screen" >
+		<rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/navsat.yaml" />
+		<!-- Remap subscriptions -->
+		<remap from="odometry/filtered" to="odometry/global" />
+	</node> -->
+
+	<!-- Extended Kalman Filter for Local Frame (odom → base_link) -->
+	<!-- Subscriptions: /odometry/encoder, /imu/data, /scanmatch_odom -->
+	<!-- Publications:  /odometry/local -->
+	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_local" clear_params="true" >
+		<rosparam command="load" file="$(find jiqi_navigation)/config/robot_localization/ekf_local.yaml" />
+		<!-- Remap publications -->
+		<remap from="odometry/filtered" to="odometry/local" />
+	</node>
+	
+	<!-- Move Base -->
+	<!-- Subscriptions: /odometry/local -->
+	<!-- Publications:  /cmd_vel -->
+	<node pkg="move_base" type="move_base" name="move_base" output="screen" respawn="false" >
+		<rosparam file="$(find jiqi_navigation)/config/move_base/costmap_common_params.yaml"    command="load" ns="global_costmap" />
+		<rosparam file="$(find jiqi_navigation)/config/move_base/costmap_common_params.yaml"    command="load" ns="local_costmap"  />
+		<rosparam file="$(find jiqi_navigation)/config/move_base/local_costmap_params.yaml"     command="load" ns="local_costmap"  />
+		<rosparam file="$(find jiqi_navigation)/config/move_base/global_costmap_params.yaml"    command="load" ns="global_costmap" />
+		<rosparam file="$(find jiqi_navigation)/config/move_base/teb_local_planner_params.yaml" command="load" />
+		<rosparam file="$(find jiqi_navigation)/config/move_base/costmap_converter_params.yaml" command="load" />
+		<rosparam file="$(find jiqi_navigation)/config/move_base/move_base_params.yaml"         command="load" />
+		<!-- Remap subscriptions -->
+		<remap from="odom" to="odometry/local" />
+	</node>
+
+</launch>
