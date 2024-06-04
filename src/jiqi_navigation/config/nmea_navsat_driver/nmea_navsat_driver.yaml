@@ -1,0 +1,6 @@
+port: /dev/ttyUSB1 # Connected port
+baud: 4800 # Specify baud rate 
+frame_id: gps # Frame name for tf2
+time_ref_source: gps # Value to use as source in timestamp
+use_GNSS_time: false # Set true if using a GNSS device
+useRMC: false # Determine whether fixes are generated from RMC (true) or GGA (false) sentences
