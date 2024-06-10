@@ -72,7 +72,7 @@ class MDCNode
             else if (slow_msg)
             {
                 max_motor_speed = 128;
-                mdc_controller.setMaxMotorSpeed(max_motor_speed)
+                mdc_controller.setMaxMotorSpeed(max_motor_speed);
                 publish();
                 ROS_INFO_STREAM("Slowed");
             }
@@ -80,7 +80,7 @@ class MDCNode
             else
             {
                 max_motor_speed = 256;
-                mdc_controller.setMaxMotorSpeed(max_motor_speed)
+                mdc_controller.setMaxMotorSpeed(max_motor_speed);
                 publish();
                 ROS_INFO_STREAM("Full Speed");
             }
